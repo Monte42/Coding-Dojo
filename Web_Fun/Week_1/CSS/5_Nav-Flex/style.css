@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.nav, .nav-links{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+
+.nav{
+    background-color: rgb(68, 68, 68);
+    height: 50px;
+    padding: 0px 20px;
+}
+
+.nav-links{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    margin-right: 20px;
+    color: white;
+}
+
+a:visited{
+    color: white;
+}
+
+button{
+    border: 1px solid black;
+    background-color: aquamarine;
+    font-weight: 900;
+    padding: 2px 5px;
+    box-shadow: 3px 3px black;
+}
+
+button:hover{
+    position: relative;
+    top: 2px;
+    box-shadow: 1px 1px black;
+}
