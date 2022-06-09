@@ -1,0 +1,19 @@
+h1{
+    background-color: red;
+}
+
+div{
+    background-color: blue;
+}
+
+p{
+    background-color: yellow;
+}
+
+a{
+    color: white;
+}
+
+a:visited{
+    color: purple;
+}

@@ -1,0 +1,31 @@
+* {
+    margin: 0%;
+}
+
+body > * {
+    padding: 1% 2%;
+    margin: 1.5%;
+}
+
+h1{
+    background-color: black;
+    color: white;
+    font-family: cursive;
+}
+
+span{color: cyan;}
+
+h2{
+    background-color: rebeccapurple;
+    color: white;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h3{
+    background-color: skyblue;
+    color: rebeccapurple;
+    text-decoration: underline;
+    text-align: end;
+    font-family: cursive;
+}
