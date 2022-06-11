@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 .nav, .nav-links{
@@ -23,11 +24,16 @@
 a{
     text-decoration: none;
     margin-right: 20px;
+    color: rgb(212, 212, 212);
+}
+
+.active{
     color: white;
+    font-weight: 600;
 }
 
 a:visited{
-    color: white;
+    color: rgb(212, 212, 212);
 }
 
 button{
