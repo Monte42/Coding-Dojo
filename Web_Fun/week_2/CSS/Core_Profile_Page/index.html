@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Delius&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Profile</title>
 </head>
@@ -13,7 +16,7 @@
         <nav>
             <h1 id="logo">Profile</h1>
             <ul>
-                <li class="nav-link">
+                <li class="nav-link" onclick="link_change()">
                     <a href="#">Home</a>
                 </li>
                 <li class="nav-link active">
@@ -45,10 +48,10 @@
                     <h2>Gary Du Mond</h2>
                     <p id="card-location">
                         <img src="./assets/icons/map-marker.png" alt="location icon">
-                        &nbsp;&nbsp;Pennsylvania
+                        &nbsp;Pennsylvania
                     </p>
                     <p>
-                        Devloper | Engineer | Problem Solver <br>
+                        Developer | Engineer | Problem Solver <br>
                         Master of shawdows and the internet!
                     </p>
                     <p>
@@ -83,7 +86,7 @@
 
             <!-- connection request -->
             <div id="requests">
-                <h3>Connection Requests</h3>
+                <h3><span>2</span> Connection Requests</h3>
                 <ul>
                     <li class="connection-request">
                         <div>
@@ -110,7 +113,7 @@
             
             <!-- your connections -->
             <div id="your-connections">
-                <h3>Your Connections</h3>
+                <h3><span>500+</span> Your Connections</h3>
                 <ul>
                     <li class="your-connections">
                         <img src="./assets/img/adrien-s.jpg" alt="adrien">
@@ -128,9 +131,14 @@
                         <img src="./assets/img/arry-s.jpg" alt="arry">
                         <p>Arry Y</p>
                     </li>
+                    <li>
+                        <a href="#">View More</a>
+                    </li>
                 </ul>
             </div>
         </section>
     </div>
+
+    <script src="./script.js"></script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 *{
     margin: 0px;
     padding: 0px;
+    font-family: 'Delius', cursive;
 }
 
 /* Navbar */
@@ -10,8 +11,8 @@ header, .nav-link a, .nav-link a:visited{
     text-decoration: none;
 }
 
-nav, nav ul, #logout, #wrapper, #card-content p,
-#connections ul li, #connections ul li div{
+nav, nav ul, #logout, #wrapper, #connections ul li, 
+#connections ul li div{
     display: flex;
 }
 
@@ -47,16 +48,24 @@ nav ul{
 }
 
 #logout {
-    flex: 6;
+    flex: 5;
     padding-right: 2%;
     justify-content: flex-end;
 }
 
 #logout button{
     background-color: #17a2b8;
-    padding: 4px 7px;
+    padding: 3px 20px;
     color: white;
     font-weight: 900;
+    font-size: 1.1em;
+}
+
+#logout button:hover{
+    cursor: pointer;
+    background-color: #11c9e6;
+    transition: .1s;
+    font-size: 1.11em;
 }
 
 
@@ -112,9 +121,8 @@ section{
 }
 
 img[src="./assets/icons/map-marker.png"]{
-    height: 18px;
-    position: relative;
-    top:-7px
+    height: 22px;
+
 }
 
 #card-location{
@@ -154,7 +162,7 @@ img[src="./assets/icons/gear.png"]{
     color: #6f6f6f;
     margin-bottom: 10px;
     font-size: 1.2em;
-    margin: 10px 0px 20px 30px;
+    margin: 10px 0px 20px 20px;
 }
 
 #education p:last-of-type{
@@ -163,6 +171,13 @@ img[src="./assets/icons/gear.png"]{
 
 
 /* Connections */
+#connections h3 span{
+    border-radius: 50%;
+    padding: 5px 10px;
+    background-color: #6f6f6f;
+    margin-right: 15px;
+}
+
 #connections img{
     height: 50px;
     border-radius: 50%;
@@ -180,7 +195,8 @@ img[src="./assets/icons/gear.png"]{
 }
 
 .connection-request{
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding: 0% 5%;
 }
 
 #connections ul li{
@@ -192,5 +208,17 @@ img[src="./assets/icons/gear.png"]{
 }
 
 #your-connections ul li{
-    margin-left: 40px;
+    margin-left: 5%;
+}
+
+#your-connections li:last-of-type{
+    border-top: 3px solid lightgray;
+    margin: 0px;
+    padding: 15px 5%;
+    font-size: 1.3em;
+}
+
+.connection-request span img:hover{
+    background-color: #3e3e3e;
+    transition: .5s;
 }
