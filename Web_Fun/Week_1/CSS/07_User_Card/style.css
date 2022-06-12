@@ -1,0 +1,61 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+
+#card{
+    height:500px;
+    width:900px;
+    border: 1px solid red;
+    margin: 100px auto;
+}
+
+#banner{
+    height: 150px;
+    background-color: #17a2b8;
+}
+
+#content{
+    position: relative;
+    top: -75px;
+    left: 30px;
+}
+
+#content > img{
+    height: 150px;
+}
+
+h2{
+    font-size: 3.5em;
+}
+
+
+img[src="./assets/map-marker.png"]{
+    height:30px;
+}
+
+#user-info{
+    margin: 15px 0px;
+    font-size: 40px;
+}
+
+#description{
+    font-size: 25px;
+}
+
+img[src="./assets/gear.png"]{
+    height:25px;
+}
+
+#card-base{
+    margin-top: 20px;
+    width: 135px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#card-base a:visited{
+    color: #2b78e4;
+}

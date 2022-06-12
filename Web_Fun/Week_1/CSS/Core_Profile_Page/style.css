@@ -1,0 +1,196 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Navbar */
+header, .nav-link a, .nav-link a:visited{
+    color: white;
+    background-color: black;
+    text-decoration: none;
+}
+
+nav, nav ul, #logout, #wrapper, #card-content p,
+#connections ul li, #connections ul li div{
+    display: flex;
+}
+
+nav, #wrapper{
+    margin: 0px auto;
+    width: 70%;
+    align-items: center;
+}
+
+nav{
+    height: 50px;
+}
+
+#logo{
+    padding-left: 2%;
+    flex:2;
+    font-size: 2.1em;
+}
+
+nav ul{
+    flex: 5;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-link{
+    list-style: none;
+}
+
+.active{
+    font-weight: 900;
+    font-size: 1.1em;
+}
+
+#logout {
+    flex: 6;
+    padding-right: 2%;
+    justify-content: flex-end;
+}
+
+#logout button{
+    background-color: #17a2b8;
+    padding: 4px 7px;
+    color: white;
+    font-weight: 900;
+}
+
+
+
+/* Main Content */
+section{
+    margin: 2%;
+    justify-content: space-between;
+    align-self: flex-start;
+}
+
+#content{
+    flex: 2;
+}
+
+#connections{
+    flex: 1;
+}
+
+
+/* Profile Card */
+#card, #connections > div{
+    border: 3px solid lightgray;
+}
+
+#banner{
+    height: 70px;
+    padding: 30px 0px 0px 20px;
+    background-color: #17a2b8;
+}
+
+#card-content{
+    margin: 70px 20px 20px;
+}
+
+#card-content *{
+    margin-top: 2%;
+    letter-spacing: .2em;
+}
+
+#profile-img{
+    height: 125px;
+    width:125px;
+    border-radius: 50%;
+    border: 2px solid white;
+    background-image: url(./assets/img/garyD.jpg);
+    background-size: contain;
+    background-position: 70% 10%;
+}
+
+#card h2{
+    font-size: 2em;
+}
+
+img[src="./assets/icons/map-marker.png"]{
+    height: 18px;
+    position: relative;
+    top:-7px
+}
+
+#card-location{
+    font-size: 1.5em;
+}
+
+img[src="./assets/icons/gear.png"]{
+    height: 18px;
+}
+
+#card-content a #card-content a:visited{
+    text-decoration: none;
+    color: #17a2b8;
+}
+
+
+/* Education */
+#education{
+    margin-top: 40px;
+    border: 3px solid lightgray;
+}
+
+#education h2, #connections h3{
+    background-color: #333;
+    padding: 10px 15px;
+    color: white;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+#education h3, #education p{
+    margin-left: 20px;
+    font-size: 1.3em;
+}
+
+#education p:first-of-type{
+    color: #6f6f6f;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    margin: 10px 0px 20px 30px;
+}
+
+#education p:last-of-type{
+    margin: 20px;
+}
+
+
+/* Connections */
+#connections img{
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+#connections img[src="./assets/icons/accept-circle.png"],
+#connections img[src="./assets/icons/close-circle.png"]{
+    height:25px;
+    margin-right: 1px;
+}
+
+#connections ul li, #connections ul li div{
+    align-items: center;
+}
+
+.connection-request{
+    justify-content: space-evenly;
+}
+
+#connections ul li{
+    margin: 10px 0px;
+}
+
+#your-connections{
+    margin-top: 40px;
+}
+
+#your-connections ul li{
+    margin-left: 40px;
+}
