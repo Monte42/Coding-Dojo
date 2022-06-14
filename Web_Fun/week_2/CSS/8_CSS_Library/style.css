@@ -1,0 +1,201 @@
+/* CSS RESEET */
+*{
+    vertical-align: baseline;
+    font-weight: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: 100%;
+    border: 0 none;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+}
+
+/* PAGE INIT SETUP */
+body{
+    background-color: silver;
+}
+.container{
+    background-color: lightgray;
+    width: 1200px;
+    margin: 0 auto;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+}
+h1{
+    text-align: center;
+    font-size: 3.4em;
+    padding: 30px 0px;
+    background-color: #03045e;
+    color: #90e0ef;
+}
+h2{
+    font-size: 2em;
+    color: #03045e;
+}
+
+/* APPLYING FLEX */
+.row, .row > *, nav, nav *, #location, #card-base,
+.list-row{
+    display: flex;
+}
+
+/* NAVBAR */
+nav{
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 20px 0px 0px;
+}
+nav h2{
+    flex: 1;
+}
+ul{
+    flex: 4;
+    justify-content: space-around;
+    list-style: none;
+    text-decoration: none;
+}
+nav ul li a{
+    text-decoration: none;
+    color: #03045e;
+    font-size: 1.2em;
+}
+nav ul li a:visited{
+    color: #03045e;
+}
+nav div{
+    flex: 2;
+    justify-content: flex-end;
+}
+nav div button{
+    padding: 5px 10px;
+    background-color: #0077b6;
+    color: white;
+}
+nav div button:hover{
+    color:#90e0ef;
+    transition: .5s;
+    cursor: pointer;
+}
+
+/* BUTTON UP */
+.btn{
+    margin: 2% 10%;
+    padding: 5px 15px;
+    border: 1px solid #90e0ef;
+    background-color: #0077b6;
+    color: white;
+    font-size: 1.5em;
+    font-weight: 400;
+    box-shadow: 2px 5px black;
+}
+.btn:hover{
+    cursor: pointer;
+    position: relative;
+    color: #90e0ef;
+    transition: color .3s;
+    top:3px;
+    box-shadow: 2px 2px black;
+}
+
+/* FLEX-ible */
+.row{
+    justify-content: space-around;
+    margin-top: 10px;
+    margin-left: 40px;
+    align-items: center;
+}
+.row > *{
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    border: 2px solid #90e0ef;
+    color: #90e0ef;
+    margin-right: 20px;
+    background-color: #0077b6;
+}
+.row div:last-of-type{
+    margin-right: 0px;
+}
+.col{
+    flex:1;
+}
+.col2{
+    flex:2;
+}
+.col3{
+    flex:3;
+}
+
+/* Card Profile */
+
+.card{
+    border: 2px solid lightslategray;
+    background-color: white;
+    width: 600px;
+    margin: 10px auto;
+}
+
+.banner{
+    background-color: #03045e;
+    height: 50px;
+    padding: 25px 0px 0px 40px;
+    margin-bottom: 60px;
+}
+
+#card-img{
+    height: 100px;
+    width: 100px;
+    border: 2px solid white;
+    border-radius: 50%;
+    background-image: url(../Core_Profile_Page/assets/img/garyD.jpg);
+    background-size: contain;
+    background-position: 70% 30%;
+}
+h3{
+    font-size: 1.8em;
+    margin: 0px 0px 10px 15px;
+}
+#location img{
+    height: 20px;
+    margin: 0px 10px 10px 15px
+}
+#location{
+    font-size: 1.5em;
+    padding-bottom: 10px;
+}
+#card-desc{
+    padding: 0px 0px 10px 15px;
+    font-size: 1.1em;
+    letter-spacing: .1em;
+}
+#card-base{
+    align-items: center;
+    padding: 0px 0px 15px 15px;
+}
+#card-base img{
+    padding-left: 10px;
+    height: 15px;
+}
+
+/* TODO LIST */
+form{
+    margin: 50px 20px;
+}
+#add-btn{
+    display: inline-block;
+    width: 50px;
+    border: #03045e;
+    background-color: #0077b6;
+    color: #90e0ef;
+    padding: 1px 5px;
+}
+.todo-list{
+    height:300px;
+    overflow: auto;
+    background-color: white;
+}
+#my_list{
+    padding-left: 60px;
+    list-style: circle;
+}
