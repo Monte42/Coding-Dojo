@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Network</h1>
+    </header>
+
+    <!-- Main -->
+    <main>
+        <h2>Your Feed</h2>
+        <section id="content">
+
+            <!-- Left -->
+            <div class="col-1">
+                <div id="card">
+                    <img src="../../../Week_2/CSS/7_User_Card/assets/user-circle.png" alt="Blank user">
+                    <p><a href="#">Add an avatar</a></p>
+                    <h3>James Doe</h3>
+                </div>
+            </div>
+
+            <!-- Right -->
+            <div class="col-2">
+                <div class="post">
+                    <div class="post-head">
+                        <h4>Neil M</h4>
+                        <div>
+                            <p><span>9</span> like(s)</p>
+                            <button onclick="addLikes(this)">Like</button>
+                        </div>
+                    </div>
+                    <p class="post-text">
+                        I just set up this new Discord bot, let me know
+                        what you all think. <a href="#">link</a>
+                    </p>
+                </div>
+                <div class="post">
+                    <div class="post-head">
+                        <h4>Nicole K</h4>
+                        <div>
+                            <p><span>12</span> like(s)</p>
+                            <button onclick="addLikes(this)">Like</button>
+                        </div>
+                    </div>
+                    <p class="post-text">
+                        Just finished my <a href="#">next comic</a>, check it out
+                    </p>
+                </div>
+                <div class="post">
+                    <div class="post-head">
+                        <h4>Jim R</h4>
+                        <div>
+                            <p><span>9</span> like(s)</p>
+                            <button onclick="addLikes(this)">Like</button>
+                        </div>
+                    </div>
+                    <p class="post-text">
+                        I can't stop listening to the <a href="#">new album</a>.
+                        Who else is liking it?
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
