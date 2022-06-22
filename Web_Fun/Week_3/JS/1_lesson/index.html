@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>My Site</h1>
+        <ul>
+            <li>item</li>
+            <li>item</li>
+            <li>item</li>
+        </ul>
+        <button onclick="removeBtn(this)" id="login">Log in</button>
+    </header>
+
+    <main>
+        <div class="col">
+            <div class="container-head">Container</div>
+            <div class="container-body">
+
+                <button onclick="alertBtn()">alert</button>
+            </div>
+        </div>
+        <div class="col">
+            <div class="container-head">Container</div>
+            <div class="container-body">
+                <div class="count"><span>0</span> Likes</div>
+                <button onclick="addLike()">Like</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
