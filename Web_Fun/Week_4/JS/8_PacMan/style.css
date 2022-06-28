@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: black;
+}
+
+.row{
+    display: flex;
+}
+
+.row div{
+    width: 20px;
+    height: 20px;
+}
+
+
+.brick{
+    background-color: blue;
+}
+
+.coin{
+    background-image: url(./assets/coin-spin.gif);
+    background-size: 40%;
+    background-position: 30% 35%;
+    background-repeat: no-repeat;
+}
+
+#pacman{
+    background-image: url(./assets/pac-man.gif);
+    background-size: contain;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+#score{
+    border: 2px solid white;
+    color: white;
+    font-size: 1.5em;
+    padding: 20px;
+    position: absolute;
+    top: 20px;
+    left: 550px;
+}
