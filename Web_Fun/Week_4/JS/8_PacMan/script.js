@@ -22,7 +22,7 @@ let worldArr = [
     [2,1,2,1,2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2,1,2],
     [2,1,1,1,2,1,2,1,2,1,2,2,0,0,2,2,1,2,1,2,1,2,1,2,1,2],
     [2,1,2,1,2,1,2,1,2,1,2,0,0,0,0,2,1,2,1,2,1,2,1,2,1,2],
-    [2,1,2,1,2,1,2,1,2,1,2,0,0,0,0,2,1,2,1,2,1,2,1,1,1,2],
+    [0,1,2,1,2,1,2,1,2,1,2,0,0,0,0,2,1,2,1,2,1,2,1,1,1,0],
     [2,1,2,1,1,1,2,1,2,1,2,2,0,0,2,2,1,2,1,2,1,2,1,2,1,2],
     [2,1,2,1,2,3,2,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2,1,2,1,2],
     [2,1,2,1,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,1,2,1,2],
@@ -175,6 +175,12 @@ document.onkeydown = function(e){
     if(e.keyCode==40 && checkForWall(characters.pacman,'y',1)){
         characters.pacman.y++
         pacman.style.transform = 'rotate(90deg)'
+    }
+    if(characters.pacman.x==0&&characters.pacman.y==8){
+        characters.pacman.x=24
+    }
+    if(characters.pacman.x==25&&characters.pacman.y==8){
+        characters.pacman.x=1
     }
     updateCharacter(pacman,characters.pacman)
     if(worldArr[characters.pacman.y][characters.pacman.x] == 1){
