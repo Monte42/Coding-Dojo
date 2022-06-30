@@ -1,0 +1,65 @@
+#wrapper{
+    background-image: url(./assets/field.jpg);
+    background-size: cover;
+    height: 650px;
+    width: 900px;
+}
+
+.character{
+    background-size: cover;
+    height: 75px;
+    width: 70px;
+    position: absolute;
+}
+
+.enemy-1{
+    background-image: url(./assets/my_enemy.png);
+}
+
+.enemy-2{
+    background-image: url(./assets/enemy.png);
+}
+
+#player{
+    background-image: url(./assets/f14.png);
+    bottom: 150px;
+    left:565px;
+}
+
+#hud ,#hud div{
+    display: flex;
+    align-items: center;
+}
+#hud{
+    margin-top: 5px;
+    width: 900px;
+    justify-content: space-evenly;
+}
+#healthBar{
+    height: 20px;
+    width: 400px;
+    border: 2px solid black;
+}
+#health{
+    height: 100%;
+    background-color: red;
+}
+
+#missileCount{
+    height: 30px;
+    width: 200px;
+    border: 2px solid black;
+    align-items: center;
+}
+.missilesLeft{
+    background-image: url(./assets/missile.png);
+    height: 27px;
+    width: 10px;
+    background-size: contain;
+}
+p{
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 900;
+    width: 900px;
+}
