@@ -1,3 +1,8 @@
+*{
+    margin:0;
+    padding: 0;
+}
+
 #wrapper{
     background-image: url(./assets/field.jpg);
     background-size: cover;
@@ -12,11 +17,11 @@
     position: absolute;
 }
 
-.enemy-1{
+.enemy-0{
     background-image: url(./assets/my_enemy.png);
 }
 
-.enemy-2{
+.enemy-1{
     background-image: url(./assets/enemy.png);
 }
 
@@ -57,9 +62,23 @@
     width: 10px;
     background-size: contain;
 }
+.missile{
+    background-image: url(./assets/missile.png);
+    background-size: cover;
+    position: absolute;
+    height: 20px;
+    width: 10px;
+}
 p{
     text-align: center;
     font-size: 1.2em;
     font-weight: 900;
     width: 900px;
+}
+
+.bullet{
+    height: 3px;
+    width: 2px;
+    position: absolute;
+    background-color: yellow;
 }
