@@ -40,4 +40,14 @@ highNum = 9
 mult = 3
 for i in range(lowNum,highNum+1):
     if i % mult == 0:
-        print(i)
+        print(i, '\n')
+
+# 7) looping a dictionary
+cars = {
+    "s10" : "150 HP",
+    "Jeep" : "145 HP",
+    "Corvette" : "405 HP"
+}
+
+for car in cars:
+    print(f"My {car} is {cars[car]}")
