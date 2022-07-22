@@ -38,6 +38,6 @@
     WHERE district = "Buenos Aires" AND cities.population > 500000;
 
 8)
-    SELECT region, COUNT(name) as number_of_countries from countries
+    SELECT region, COUNT(name) as number_of_countries FROM countries
     GROUP BY region
     ORDER BY number_of_countries DESC;
