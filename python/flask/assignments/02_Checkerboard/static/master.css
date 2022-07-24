@@ -1,0 +1,20 @@
+h1{
+    margin: 0 auto;
+    width: fit-content;
+    padding: 10px 25px;
+    font-size: 2.5vw;
+}
+
+#board{
+    width: fit-content;
+    margin: 40px auto;
+}
+
+.row{
+    display: flex;
+}
+
+.space{
+    height: 5vw;
+    width: 5vw;
+}
