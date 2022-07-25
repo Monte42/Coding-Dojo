@@ -5,12 +5,6 @@ import random
 app = Flask(__name__)
 app.secret_key = 'my_super_secret_key'
 
-# add msg to session
-# make guess a redirect
-# create function to check guess remaining - return true or false
-# incorperate guess count into win msg
-# make a you lose msg
-
 @app.route('/')
 def homepage():
     if 'number' in session:
@@ -19,7 +13,6 @@ def homepage():
             session['class_list'] = ['wrong','hidden','']
     else:
         session['number'] = random.randint(1,100)
-        print(session['number'])
         session['guess'] = 5
         session['last_guess'] = 1
         session['msg'] = ''
