@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='master.css') }}">
+    <title>Leader Board</title>
+</head>
+<body>
+    <h1>Welcome to the Great Number Game</h1>
+    <h2>Leader Board</h2>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Guesses</th>
+        </tr>
+        <tr>
+            <td>Mr. 636</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>Craig MacDonald</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>Sarah Oconner</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>{{ name }}</td>
+            <td>{{ guesses }}</td>
+        </tr>
+    </table>
+</body>
+</html>
