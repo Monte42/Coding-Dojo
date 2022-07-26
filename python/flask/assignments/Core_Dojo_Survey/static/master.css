@@ -1,0 +1,46 @@
+body{
+    background-color: #121212;
+}
+
+#container{
+    width: fit-content;
+    margin: 40px auto;
+    padding: 20px 2vw;
+    background-color: #2a2a2a;
+    color: goldenrod;
+}
+
+h1, h2{
+    text-align: center;
+}
+
+h3{
+    margin: 30px 0px 20px;
+}
+
+form * {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+input[type='text']{
+    width: 100%;
+}
+
+form div:last-of-type{
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+
+button{
+    margin-left: 38%;
+}
+
+
+
+
+#submitted_data > *{
+    display: flex;
+    justify-content: space-between;
+}
