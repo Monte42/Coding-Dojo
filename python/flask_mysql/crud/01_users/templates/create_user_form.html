@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New User</title>
+</head>
+<body>
+    <h1>Create a new user</h1>
+
+    <form action="/process" method="POST">
+        <label>
+            First Name:
+            <input type="text" name="first_name">
+        </label>
+        <label>
+            Last Name:
+            <input type="text" name="last_name">
+        </label>
+        <label>
+            Email:
+            <input type="email" name="email">
+        </label>
+        <button>Add User</button>
+    </form>
+
+    <button><a href="/">All Users</a></button>
+</body>
+</html>
