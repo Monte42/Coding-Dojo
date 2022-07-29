@@ -25,8 +25,8 @@ def process_user():
         'last_name' : request.form["last_name"],
         'email' : request.form["email"]
     }
-    User.create_new_user(data)
-    return redirect('/')
+    new_user = User.create_new_user(data)
+    return redirect(f'/view/{new_user}')
 
 @app.route('/update/<id>', methods=['GET', 'POST'])
 def update_user(id):
