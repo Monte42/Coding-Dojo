@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.first_name }} {{ user.last_name }}</title>
+</head>
+<body>
+    <h1>User ID: {{ user.id }}</h1>
+    <div style="border:2px solid black; margin:40px; padding:10px; width:fit-content">
+        {% for key in user.keys() %}
+            {% if key != 'id' %}
+                <p>{{ key.replace('_',' ').capitalize() }}: {{ user[key] }}</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div style="margin: 20px 60px;">
+        <a href="/">Home</a> | <a href="/update/{{ user.id }}">Edit</a> | <a href="/delete/{{user.id}}">Delete</a>
+    </div>
+</body>
+</html>

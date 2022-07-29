@@ -8,14 +8,31 @@
 </head>
 <body>
     <h1>All Users</h1>
-    {% for user in users %}
-        <p>First Name: {{ user.first_name }}</p>
-        <p>Last Name: {{ user.last_name }}</p>
-        <p>Email: {{ user.email }}</p>
-        <p>Joined At: {{ user.created_at }}</p>
-        <br><hr><br>
-    {% endfor %}
-
+    <table border="5">
+        <tr>
+            <th style="padding:5px;">ID</th>
+            <th style="padding:5px;">First Name</th>
+            <th style="padding:5px;">Last Name</th>
+            <th style="padding:5px;">Email</th>
+            <th style="padding:5px;">Join Date</th>
+            <th style="padding:5px;">Links</th>
+        </tr>
+        {% for user in users %}
+            <tr>
+                <td style="padding:5px;">{{ user.id }}</td>
+                <td style="padding:5px;">{{ user.first_name }}</td>
+                <td style="padding:5px;">{{ user.last_name }}</td>
+                <td style="padding:5px;">{{ user.email }}</td>
+                <td style="padding:5px;">{{ user.created_at }}</td>
+                <td style="padding:5px;">
+                    <a href="/view/{{ user.id }}">Show</a> | 
+                    <a href="/update/{{ user.id }}">Edit</a> | 
+                    <a href="#">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br><br>
     <button><a href="/create_user">Add User</a></button>
 </body>
 </html>

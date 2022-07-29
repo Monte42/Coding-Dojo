@@ -21,6 +21,11 @@ class User:
         return users
 
     @classmethod
+    def get_single_user(cls, data):
+        query = "SELECT * FROM users WHERE id=%(id)s"
+        return connectToMySQL('users').query_db(query, data)
+
+    @classmethod
     def create_new_user(cls, data):
         query = '''
         INSERT INTO users (first_name,last_name,email)
@@ -44,4 +49,4 @@ class User:
         DELETE FROM users
         WHERE id=%(id)s
         '''
-        return connectToMySQL('users',data)
+        return connectToMySQL('users').query_db(query,data)
