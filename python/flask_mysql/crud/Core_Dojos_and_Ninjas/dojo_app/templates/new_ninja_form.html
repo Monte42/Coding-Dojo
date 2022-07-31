@@ -1,0 +1,24 @@
+{% extends 'base_templates/base.html' %}
+
+{% block title %}Create New Ninja{% endblock %}
+
+
+{% block content %}
+    <div class="col">
+        <form class="flex-wrpper" action="/create_ninja" method="POST">
+            <label>
+                Select Dojo:
+                <select name="dojo_id">
+                    {% for dojo in dojos %}
+                        <option value="{{ dojo.id }}">{{ dojo.name }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+            <label>First Name: <input type="text" name="first_name"></label>
+            <label>last Name: <input type="text" name="last_name"></label>
+            <label>Age: <input type="number" name="age"></label>
+            <button>Submit</button>
+        </form>
+    </div>
+    <button><a href="/dojos">Home</a></button>
+{% endblock %}

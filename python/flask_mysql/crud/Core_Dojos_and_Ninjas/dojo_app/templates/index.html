@@ -1,0 +1,33 @@
+{% extends 'base_templates/base.html' %}
+
+{%  block title %}Dojos and Ninjas{% endblock %}
+
+{% block content %}
+
+    <div class="flex-wrapper">
+        <div class="col">
+            <h2>New Dojo</h2>
+            <form action="/add_dojo" method="POST">
+                <label>
+                    New Dojo:
+                    <input type="text" name="name">
+                </label>
+                <input type="submit" value="Create Dojo">
+            </form>
+        </div>
+        <div class="col">
+            <h2>All Dojos</h2>
+            <table>
+                {% for dojo in dojos %}
+                    <tr>
+                        <td><a href="/dojo/{{dojo.id}}">{{ dojo.name }}</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div class="flex-wrapper">
+        <button><a href="/create_ninja">Add Ninja</a></button>
+    </div>
+
+{% endblock %}
