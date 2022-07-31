@@ -1,4 +1,3 @@
-from multiprocessing import connection
 import pymysql.cursors
 
 class MySQLConnection:
