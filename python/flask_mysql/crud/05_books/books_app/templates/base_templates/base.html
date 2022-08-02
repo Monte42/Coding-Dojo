@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/master.css') }}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+    {% include 'base_templates/navbar.html' %}
+    <br><br><br>
+    {% block content %}{% endblock %}
+    <br><br><br>
+    {% include 'base_templates/footer.html' %}
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

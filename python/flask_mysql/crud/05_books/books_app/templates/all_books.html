@@ -1,0 +1,45 @@
+{% extends 'base_templates/base.html' %}
+
+{% block title %}All Books{% endblock %}
+
+{% block content %}
+    <div class="flex-wrapper">
+        <div class="col">
+            <h2>New Book</h2>
+            <form class="flex-wrapper" action="/books" method="POST">
+                <label>Author:
+                    <select name="author_id">
+                        {% for author in authors %}
+                            <option value="{{author.id}}">{{author.first_name}} {{author.last_name}}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+                <h6>If author not present, please <a href="/authors">click here</a> and create author</h6>
+                <label>Title: 
+                    <input type="text" name="title">
+                </label>
+                <label>Number Of Pages: 
+                    <input type="number" name="num_of_pages">
+                </label>
+                <input type="submit" value="Create">
+            </form>
+        </div>
+        <div class="col">
+            <h2>All Books</h2>
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Number of Pages</th>
+                </tr>
+                {% for book in books %}
+                    <tr>
+                        <td><a href="/books/{{book.id}}">{{ book.title }}</a></td>
+                        <td><a href="/authors/{{book.author_id}}">{{ book.first_name }} {{ book.last_name }}</a></td>
+                        <td>{{ book.num_of_pages }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

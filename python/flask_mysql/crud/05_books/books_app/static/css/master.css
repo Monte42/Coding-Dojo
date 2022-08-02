@@ -1,0 +1,27 @@
+.flex-wrapper{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+nav a{
+    text-decoration: none;
+    color: black;
+}
+
+form{
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+}
+
+h6{
+    margin: 0 0 20px;
+}
+
+tr{
+    text-align: center;
+}
+
+footer,h1,h2,h3,h4{
+    text-align: center;
+}
