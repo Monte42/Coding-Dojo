@@ -1,0 +1,11 @@
+<div class="flex-wrapper flex-evenly">
+    <a href="/">Home</a>
+    <a href="/users">All Users</a>
+    <a href="#">All Bikes</a>
+    {% if not session.user_id %}
+        <a href="/register">Sign Up</a>
+        <a href="/login">Log In</a>
+    {% else %}
+        <a href="/logout">Logout</a>
+    {% endif %}
+</div>

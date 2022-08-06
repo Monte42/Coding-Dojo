@@ -1,5 +1,5 @@
-from unittest import result
 from books_app.config.mysqlconnection import connectToMySQL, database
+from books_app.models import book
 
 class Author:
     def __init__(self,data):
@@ -16,7 +16,10 @@ class Author:
         SELECT * FROM authors;
         '''
         results = connectToMySQL(database).query_db(query)
-        return results
+        authors = []
+        for auth in results:
+            authors.append(cls(auth))
+        return authors
     
     @classmethod
     def get_author_and_books(cls,data):
@@ -28,13 +31,16 @@ class Author:
         '''
         results = connectToMySQL(database).query_db(query,data)
         author = cls(results[0])
-        for book in results:
+        for result in results:
             book_data = {
-                'id': book['books.id'],
-                'title': book['title'],
-                'num_of_pages': book['num_of_pages']
+                'id': result['books.id'],
+                'author_id': result['author_id'],
+                'title': result['title'],
+                'num_of_pages': result['num_of_pages'],
+                'created_at': result['books.created_at'],
+                'updated_at': result['books.updated_at']
             }
-            author.books.append(book_data)
+            author.books.append(book.Book(book_data))
         return author
     
     @classmethod

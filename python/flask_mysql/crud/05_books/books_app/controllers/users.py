@@ -19,5 +19,5 @@ def show_user_favs(id):
     data = {'id':id}
     result = user.User.get_user_favorite_books(data)
     books = book.Book.get_all_books()
-    books_user_liked = parse_list(result.favorites,'book_id')
-    return render_template('show_all.html',user=result,books=books,books_user_liked=books_user_liked)
+    books = parse_list(books,result.favorites)
+    return render_template('show_all.html',user=result,books=books)

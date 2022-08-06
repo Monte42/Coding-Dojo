@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+
+{% block title %}All Users{% endblock %}
+
+{% block content %}
+
+    <div class="flex-wrapper">
+        
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Number of Bikes</th>
+                <th>Join Date</th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <td><a href="/users/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a></td>
+                    <td>0</td>
+                    <td>{{ user.created_at.strftime('%B %d, %y') }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+
+{% endblock %}

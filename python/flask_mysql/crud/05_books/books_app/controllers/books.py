@@ -23,5 +23,5 @@ def show_who_liked_book(id):
     page = 'book'
     result = book.Book.get_all_who_liked_book(data)
     users = user.User.get_all_users()
-    users_who_liked_book = parse_list(result.favorites, 'user_id')
-    return render_template('show_all.html',book=result,page=page,users=users,users_who_liked_book=users_who_liked_book)
+    users = parse_list(users,result.users_who_liked_this_book)
+    return render_template('show_all.html',book=result,page=page,users=users)

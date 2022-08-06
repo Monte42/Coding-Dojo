@@ -1,14 +1,15 @@
 from books_app.config.mysqlconnection import connectToMySQL, database
+from books_app.models import author,user
 
 class Book:
     def __init__(self, data):
         self.id = data['id']
-        self.author_id = data['author_id']
+        self.author = None
         self.title = data['title']
         self.num_of_pages = data['num_of_pages']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-        self.favorites = []
+        self.users_who_liked_this_book = []
         
     @classmethod
     def get_all_books(cls):
@@ -18,13 +19,24 @@ class Book:
         ON books.author_id = authors.id;
         '''
         results = connectToMySQL(database).query_db(query)
-        return results
+        books = []
+        for item in results:
+            author_data = {
+                'id':item['authors.id'],
+                'first_name':item['first_name'],
+                'last_name':item['last_name'],
+                'created_at':item['authors.created_at'],
+                'updated_at':item['authors.updated_at'],
+            }
+            this_book = cls(item)
+            this_book.author = author.Author(author_data)
+            books.append(this_book)
+        return books
     
     @classmethod
     def get_all_who_liked_book(cls,data):
         query = '''
-        SELECT *, authors.first_name as a_f_name,
-        authors.last_name as a_l_name FROM books
+        SELECT * FROM books
         LEFT JOIN authors
         ON books.author_id = authors.id
         LEFT JOIN favorites 
@@ -35,15 +47,15 @@ class Book:
         '''
         results = connectToMySQL(database).query_db(query,data)
         book = cls(results[0])
-        for fav in results:
-            book_data = {
-                'author_first_name': fav['a_f_name'],
-                'author_last_name': fav['a_l_name'],
-                'user_id': fav['users.id'],
-                'user_first_name': fav['users.first_name'],
-                'user_last_name': fav['users.last_name']
+        for user_who_liked_book in results:
+            user_data = {
+                'id': user_who_liked_book['users.id'],
+                'first_name': user_who_liked_book['users.first_name'],
+                'last_name': user_who_liked_book['users.last_name'],
+                'created_at': user_who_liked_book['users.created_at'],
+                'updated_at': user_who_liked_book['users.updated_at']
             }
-            book.favorites.append(book_data)
+            book.users_who_liked_this_book.append(user.User(user_data))
         return book
     
     @classmethod

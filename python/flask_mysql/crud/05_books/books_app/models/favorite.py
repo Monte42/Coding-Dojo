@@ -1,4 +1,4 @@
-from books_app.config.mysqlconnection import MySQLConnection,database
+from books_app.config.mysqlconnection import connectToMySQL,database
 
 class Favorite:
     def __init__(self,data):
@@ -11,4 +11,4 @@ class Favorite:
         INSERT INTO favorites (book_id, user_id)
         VALUES (%(book_id)s,%(user_id)s);
         '''
-        return MySQLConnection(database).query_db(query,data)
+        return connectToMySQL(database).query_db(query,data)

@@ -1,0 +1,34 @@
+{% extends 'base/base.html' %}
+
+{% block title %}New Bike{% endblock %}
+
+
+{% block content %}
+    <div class="flex-wrapper flex-evenly">
+        <div class="col">
+            <form class="flex-wrapper flex-column" action="/create_bike" method="POST">
+                <label>
+                    Year:
+                    <input type="number" name="year">
+                </label>
+                <label>
+                    Make:
+                    <input type="text" name="make">
+                </label>
+                <label>
+                    Model:
+                    <input type="text" name="model">
+                </label>
+                <label>
+                    Description:
+                    <textarea rows="4" cols="40" name="description"></textarea>
+                </label>
+                <label>
+                    Image URL:
+                    <input type="text" name="bike_img">
+                </label>
+                <input type="submit" value="Add To Garage">
+            </form>
+        </div>
+    </div>
+{% endblock %}

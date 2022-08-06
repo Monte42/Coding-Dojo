@@ -1,4 +1,5 @@
-from books_app.config.mysqlconnection import MySQLConnection, database
+from books_app.config.mysqlconnection import connectToMySQL, database
+from books_app.models import book
 
 class User:
     def __init__(self,data):
@@ -14,8 +15,11 @@ class User:
         query = '''
         SELECT * FROM users;
         '''
-        results = MySQLConnection(database).query_db(query)
-        return results
+        results = connectToMySQL(database).query_db(query)
+        users = []
+        for person in results:
+            users.append(cls(person))
+        return users
     
     @classmethod
     def get_user_favorite_books(cls,data):
@@ -27,15 +31,18 @@ class User:
         ON books.id = favorites.book_id
         WHERE users.id = %(id)s;
         '''
-        results = MySQLConnection(database).query_db(query,data)
+        results = connectToMySQL(database).query_db(query,data)
         user = cls(results[0])
         for fav in results:
             fav_data = {
-                "book_id": fav['books.id'],
+                "id": fav['books.id'],
+                'author_id': fav['author_id'],
                 "title": fav['title'],
-                "num_of_pages": fav['num_of_pages']
+                "num_of_pages": fav['num_of_pages'],
+                "created_at": fav['books.created_at'],
+                "updated_at": fav['books.updated_at'],
             }
-            user.favorites.append(fav_data)
+            user.favorites.append(book.Book(fav_data))
         return user
     
     @classmethod
@@ -44,4 +51,4 @@ class User:
         INSERT INTO users (first_name,last_name)
         VALUES (%(first_name)s,%(last_name)s);
         '''
-        return MySQLConnection(database).query_db(query,data)
+        return connectToMySQL(database).query_db(query,data)
