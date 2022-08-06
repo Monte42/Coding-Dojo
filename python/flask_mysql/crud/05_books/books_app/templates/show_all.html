@@ -35,10 +35,18 @@
                 <h3>By </h3>
                 <h4>People who liked this book</h4>
                 <table>
-                    <tr><th>First Name</th><th>Last Name</th></tr>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>User Link</th>
+                    </tr>
                     {% for user in book.users_who_liked_this_book %}
                         <tr>
-                            <td>{{user.first_name}}</td><td>{{user.last_name}}</td>
+                            <td>{{user.first_name}}</td>
+                            <td>{{user.last_name}}</td>
+                            <td>
+                                <a href="/users/{{user.id}}">View User</a>
+                            </td>
                         </tr>
                     {% endfor %}
                 </table>
