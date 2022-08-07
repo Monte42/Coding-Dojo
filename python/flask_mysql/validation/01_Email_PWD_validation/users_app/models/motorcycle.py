@@ -14,13 +14,13 @@ class Motorcycle:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.user = None
-        
-        
-        
+
+
+    # ===========
     # VALIDATIONS
+    # ===========
     @staticmethod
     def validate_new_bike_form(bike, id):
-        print(type(int(bike['year'])) == int)
         is_valid = True
         if id <= 0:
             flash('You must Sign In first')
@@ -37,32 +37,10 @@ class Motorcycle:
         return is_valid
 
 
-    # READ SQL
-    @classmethod
-    def get_all_motorcycles(cls):
-        query = '''
-        SELECT * FROM motorcycles;
-        '''
-        results = connectToMySQL(db).query_db(query)
-        bikes = []
-        for bike in results:
-            bikes.append(cls(bike))
-        return bikes
-    
-    @classmethod
-    def get_motorcycle_by_id(cls,id):
-        query = '''
-        SELECT * FROM motorcycles
-        WHERE id = %(id)s
-        '''
-        data = {'id':id}
-        result = connectToMySQL(db).query_db(query,data)
-        bike = cls(result[0])
-        return bike
-    
-    
-    
+
+    # ==========
     # CREATE SQL
+    # ==========
     @classmethod
     def create_new_motorcycle(cls,form_data,id):
         query = '''
@@ -82,10 +60,55 @@ class Motorcycle:
         }
         bike_id = connectToMySQL(db).query_db(query,data)
         return bike_id
+
+
+
+    # ========
+    # READ SQL
+    # ========
+    # GET ALL BIKES
+    @classmethod
+    def get_all_motorcycles(cls):
+        query = '''
+        SELECT * FROM motorcycles;
+        '''
+        results = connectToMySQL(db).query_db(query)
+        bikes = []
+        for bike in results:
+            bikes.append(cls(bike))
+        return bikes
     
-    
-    
+    # GET BIKE BY ID
+    @classmethod
+    def get_motorcycle_by_id(cls,id):
+        query = '''
+        SELECT * FROM motorcycles
+        LEFT JOIN users
+        ON users.id = motorcycles.user_id
+        WHERE motorcycles.id = %(id)s
+        '''
+        data = {'id':id}
+        result = connectToMySQL(db).query_db(query,data)
+        user_data = {
+            "id": result[0]['users.id'],
+            "first_name": result[0]['first_name'],
+            "last_name": result[0]['last_name'],
+            "email": result[0]['email'],
+            "username": result[0]['username'],
+            "password": result[0]['password'],
+            "user_img": result[0]['user_img'],
+            "created_at": result[0]['users.created_at'],
+            "updated_at": result[0]['users.updated_at']
+        }
+        bike = cls(result[0])
+        bike.user = user.User(user_data)
+        return bike
+
+
+
+    # ==========
     # UPDATE SQL
+    # ==========
     @classmethod
     def udpate_motorcyle(cls,form_data):
         query = '''
@@ -96,6 +119,7 @@ class Motorcycle:
         WHERE id = %(id)s;
         '''
         data = {
+            'id': form_data['id'],
             'year': form_data['year'],
             'make': form_data['make'],
             'model': form_data['model'],
@@ -103,10 +127,12 @@ class Motorcycle:
             'bike_img': form_data['bike_img']
         }
         return connectToMySQL(db).query_db(query, data)
-    
-    
-    
+
+
+
+    # ==========
     # DELETE SQL
+    # ==========
     @classmethod
     def delete_motorcycle(cls,id):
         query = '''

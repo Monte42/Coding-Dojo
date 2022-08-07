@@ -10,8 +10,9 @@
 <body>
 
     {% include 'base/header.html' %}
+    <br>
     {% include 'base/navbar.html' %}
-
+    <br>
     {% with msgs = get_flashed_messages() %}
         {% if msgs %}
             {% for msg in msgs %}

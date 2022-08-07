@@ -1,11 +1,12 @@
-<div class="flex-wrapper flex-evenly">
-    <a href="/">Home</a>
-    <a href="/users">All Users</a>
-    <a href="#">All Bikes</a>
+<div class="flex-wrapper flex-evenly navbar">
+
     {% if not session.user_id %}
         <a href="/register">Sign Up</a>
         <a href="/login">Log In</a>
     {% else %}
+        <a href="/">Home</a>
+        <a href="/users">All Users</a>
+        <a href="/bikes">All Bikes</a>
         <a href="/logout">Logout</a>
     {% endif %}
 </div>

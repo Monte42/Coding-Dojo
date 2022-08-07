@@ -4,11 +4,11 @@ from books_app.models import author,user
 class Book:
     def __init__(self, data):
         self.id = data['id']
-        self.author = None
         self.title = data['title']
         self.num_of_pages = data['num_of_pages']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.author = None
         self.users_who_liked_this_book = []
         
     @classmethod

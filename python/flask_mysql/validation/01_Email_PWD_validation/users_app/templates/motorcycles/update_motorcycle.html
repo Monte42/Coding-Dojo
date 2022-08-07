@@ -1,0 +1,33 @@
+{% extends "base/base.html" %}
+
+{% block title %}Edit Ride{% endblock %}
+
+
+{% block content %}
+    <div class="flex-wrapper flex-evenly">
+        <form class="flex-wrapper flex-column" action="/bikes/{{bike.id}}/edit" method="POST">
+            <input type="hidden" name="id" value="{{bike.id}}">
+            <label>
+                Year:
+                <input type="number" name="year" value="{{bike.year}}">
+            </label>
+            <label>
+                Make:
+                <input type="text" name="make" value="{{bike.make}}">
+            </label>
+            <label>
+                Model:
+                <input type="text" name="model" value="{{bike.model}}">
+            </label>
+            <label>
+                Image URL:
+                <input type="text" name="bike_img" value="{{bike.bike_img}}">
+            </label>
+            <label>
+                Description:
+                <textarea name="description" cols="40" rows="4">{{bike.descprition}}</textarea>
+            </label>
+            <input type="submit" value="Update">
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base/base.html' %}
+
+{% block title %}All Rides{% endblock %}
+
+
+{% block content %}
+    <div class="flex-wrapper flex-evenly">
+        <div class="col">
+            <h2>All Motorcycles</h2>
+            <table>
+                <tr>
+                    <th>Make</th><th>Model</th><th>Year</th>
+                </tr>
+                {% for bike in bikes %}
+                <tr>
+                    <td>{{ bike.make }}</td>
+                    <td>{{ bike.model }}</td>
+                    <td>{{ bike.year }}</td>
+                    <td><a href="bikes/{{bike.id}}">View Ride</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

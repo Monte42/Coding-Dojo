@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+
+{% block title %}{{ bike.make }} {{ bike.model }}{% endblock %}
+
+
+{% block content %}
+    <br><br>
+    <div class="flex-wrapper flex-evenly">
+        {% if bike.bike_img != '' %}
+            <div class="col">
+                <img src="{{bike.bike_img}}" alt="">
+            </div>
+        {% endif %}
+        <div class="col">
+            <h2>{{bike.user.first_name}} {{bike.user.last_name}}</h2>
+            <h3>Owns this bike</h3>
+            <p>Make: {{bike.make}}</p>
+            <p>Model: {{bike.model}}</p>
+            <p>Year: {{bike.year}}</p>
+            <p>Description: {{bike.descprition}}</p>
+            {% if session.user_id == bike.user.id %}
+                <button><a href="/bikes/{{bike.id}}/edit">Update Ride</a></button>
+                <button><a href="/bikes/{{bike.id}}/delete">Delete Ride</a></button>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

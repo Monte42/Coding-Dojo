@@ -1,0 +1,58 @@
+{% extends 'base/base.html' %}
+
+{% block title %}{{user.first_name}} {{user.last_name}}{% endblock %}
+
+{% block content %}
+
+    <h2>{{user.first_name}} {{user.last_name}}</h2>
+
+    <div class="flex-wrapper flex-evenly">
+        <div class="col">
+            {% if user.user_img == '' %}
+                <img src="{{ url_for('static', filename='images/blank_user.png') }}" alt="">
+            {% endif %}
+            <img src="{{user.user_img}}" alt="">
+        </div>
+        <div class="col">
+            <h3>Ryder Information</h3>
+            <p>First Name: {{ user.first_name }}</p>
+            <p>last Name: {{ user.last_name }}</p>
+            <p>Userame: {{ user.username }}</p>
+            <p>Email: {{ user.email }}</p>
+            <p>Date Joined: {{ user.created_at.strftime('%B %d, %y') }}</p>
+            <br>
+            {% if session.user_id == user.id %}
+                <button><a href="/users/{{user.id}}/edit">Update Profile</a></button>
+                <button><a href="/users/{{user.id}}/delete">Delete Account</a></button>
+            {% endif %}
+        </div>
+        <div class="col">
+            <h3>Ryders Garage</h3>
+            <table>
+                <tr>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Year</th>
+                    <th>Bike Link</th>
+                </tr>
+                {% if user.get_number_of_bikes() <= 0 %}
+                    </table>
+                    <h4>No Bikes To Display</h4>
+                {% else %}
+                    {% for bike in user.motorcycles %}
+                        <tr>
+                            <td>{{bike.make}}</td>
+                            <td>{{bike.model}}</td>
+                            <td>{{bike.year}}</td>
+                            <td><a href="/bikes/{{bike.id}}">View Bike</a></td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+                {% endif %}
+            {% if session.user_id == user.id %}
+                <button><a href="/create_bike">Add Motorcycle</a></button>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

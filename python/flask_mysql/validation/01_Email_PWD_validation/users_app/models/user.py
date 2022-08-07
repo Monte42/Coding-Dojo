@@ -1,11 +1,12 @@
 from users_app.config.mysqlconnection import connectToMySQL, db
-# from users_app.models import mortorcyle
+from users_app.models import motorcycle
 from users_app import app
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 from flask import flash
 import re
 
+# PATTERN VALIDATORS
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.+_-]+\.[a-zA-Z]+$')
 PWD_REGEX = re.compile(r"^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*?])[\w\d!@#$%^&*?]{6,12}$")
 
@@ -20,16 +21,17 @@ class User:
         self.user_img = data['user_img']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-        self.morotcycles = []
+        self.motorcycles = []
+        
+    def get_number_of_bikes(self):
+        if self.motorcycles[0].make == None:
+            return 0
+        return len(self.motorcycles)
 
-
+    # FORM VALIDATION
     @staticmethod
     def validate_user_registration_form(user):
-        query = '''
-        SELECT username FROM users;
-        '''
-        usernames = connectToMySQL(db).query_db(query)
-        print(usernames)
+        existing_users = get_usernames()
         is_valid = True
         if not EMAIL_REGEX.match(user['email']):
             flash("Invalid Email...")
@@ -52,46 +54,16 @@ class User:
         if len(user['username']) < 2:
             flash('Username must be at least 2 characters long')
             is_valid = False
+        if user['username'] in existing_users:
+            flash('Sorry, that name is already in use...')
+            is_valid = False
         return is_valid
 
 
-    # READ SQL
-    @classmethod
-    def get_all_users(cls):
-        query = '''
-        SELECT * FROM users;
-        '''
-        results = connectToMySQL(db).query_db(query)
-        users = []
-        for person in results:
-            users.append(cls(person))
-        return users
-    
-    @classmethod
-    def get_user_by_id(cls, id):
-        data = {'id': id}
-        query = '''
-        SELECT * FROM users    
-        WHERE id = %(id)s;
-        '''  # Need to update to join motorcycles
-        result = connectToMySQL(db).query_db(query, data)
-        user = cls(result[0])
-        return user
 
-    @classmethod
-    def get_user_by_username(cls, form_data):
-        query = '''
-        SELECT * FROM users
-        WHERE username = %(username)s;
-        '''
-        data = {'username': form_data['username']}
-        result = connectToMySQL(db).query_db(query,data)
-        if result:
-            user = cls(result[0])
-            return user
-        return None
-    
+    # ==========
     # CREATE SQL
+    # ==========
     @classmethod
     def create_new_user(cls, form_data):
         query = '''
@@ -112,21 +84,109 @@ class User:
             'user_img': form_data['user_img'],
         }
         new_user = connectToMySQL(db).query_db(query,data)
-        print(new_user)
         return new_user
 
 
 
+    # ========
+    # READ SQL
+    # ========
+    # GET ALL USERS
+    @classmethod
+    def get_all_users(cls):
+        query = '''
+        SELECT * FROM users;
+        '''
+        results = connectToMySQL(db).query_db(query)
+        users = []
+        for person in results:
+            this_person = cls.get_user_by_id(person['id'])
+            users.append(this_person)
+        return users
+
+    # GET USER BY ID
+    @classmethod
+    def get_user_by_id(cls, id):
+        data = {'id': id}
+        query = '''
+        SELECT * FROM users
+        LEFT JOIN motorcycles
+        ON motorcycles.user_id = users.id
+        WHERE users.id = %(id)s;
+        '''
+        result = connectToMySQL(db).query_db(query, data)
+        this_user = cls(result[0])
+        for bike in result:
+            bike_data = {
+                'id': bike['motorcycles.id'],
+                'user_id': bike['user_id'],
+                'year': bike['year'],
+                'make': bike['make'],
+                'model': bike['model'],
+                'description': bike['description'],
+                'bike_img': bike['bike_img'],
+                'created_at': bike['motorcycles.created_at'],
+                'updated_at': bike['motorcycles.updated_at'],
+            }
+            this_bike = motorcycle.Motorcycle(bike_data)
+            this_user.motorcycles.append(this_bike)
+        return this_user
+
+    # GET USER BY USERNAME => FOR LOGIN
+    @classmethod
+    def get_user_by_username(cls, form_data):
+        query = '''
+        SELECT * FROM users
+        WHERE username = %(username)s;
+        '''
+        data = {'username': form_data['username']}
+        result = connectToMySQL(db).query_db(query,data)
+        if result:
+            user = cls(result[0])
+            return user
+        return None
+
+
+
+    # ==========
     # UPDATE SQL
+    # ==========
     @classmethod
     def update_user(cls,form_data):
-        pass
+        query = '''
+        UPDATE users
+        SET first_name = %(first_name)s,
+        last_name = %(last_name)s, 
+        email = %(email)s,
+        username = %(username)s, 
+        user_img = %(user_img)s
+        WHERE id = %(id)s;
+        '''
+        return connectToMySQL(db).query_db(query,form_data)
 
 
 
+    # ==========
     # DELETE SQL
+    # ==========
     @classmethod
     def delete_user(cls, id):
-        pass 
-    
-    
+        query = '''
+        DELETE FROM users
+        WHERE id = %(id)s;
+        '''
+        data = {'id':id}
+        return connectToMySQL(db).query_db(query,data)
+
+
+
+# GET ALL USERNAME FOR VALIDATION
+def get_usernames():
+    query = '''
+        SELECT username FROM users;
+        '''
+    usernames = connectToMySQL(db).query_db(query)
+    temp_arr = []
+    for username in usernames:
+        temp_arr.append(username['username'])
+    return temp_arr

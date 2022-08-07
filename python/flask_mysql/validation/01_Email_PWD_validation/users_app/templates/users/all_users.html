@@ -11,12 +11,14 @@
                 <th>Name</th>
                 <th>Number of Bikes</th>
                 <th>Join Date</th>
+                <th>User Link</th>
             </tr>
             {% for user in users %}
                 <tr>
-                    <td><a href="/users/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a></td>
-                    <td>0</td>
+                    <td>{{ user.first_name }} {{ user.last_name }}</td>
+                    <td>{{user.get_number_of_bikes()}}</td>
                     <td>{{ user.created_at.strftime('%B %d, %y') }}</td>
+                    <td><a href="/users/{{user.id}}">View User</a></td>
                 </tr>
             {% endfor %}
         </table>
