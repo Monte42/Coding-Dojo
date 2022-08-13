@@ -1,0 +1,49 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Login - Signup{% endblock %}
+
+
+{% block content %}
+    <div class="flex-wrapper flex-evenly">
+        <div class="col">
+            <h2>Registraion</h2>
+            <form class="flex-wrapper flex-column" action="#">
+                <label>
+                    First Name:
+                    <input type="text" name="first_name">
+                </label>
+                <label>
+                    Last Name:
+                    <input type="text" name="last_name">
+                </label>
+                <label>
+                    Email:
+                    <input type="email" name="email">
+                </label>
+                <label>
+                    Password:
+                    <input type="password" name="password1">
+                </label>
+                <label>
+                    Confirm Password:
+                    <input type="password" name="password2">
+                </label>
+                <input type="submit" value="Sign Up">
+            </form>
+        </div>
+        <div class="col">
+            <h2>Login</h2>
+            <form class="flex-wrapper flex-column" action="#">
+                <label>
+                    Email:
+                    <input type="email" name="email">
+                </label>
+                <label>
+                    Password:
+                    <input type="password" name="password">
+                </label>
+                <input type="submit" value="Log In">
+            </form>
+        </div>
+    </div>
+{% endblock %}

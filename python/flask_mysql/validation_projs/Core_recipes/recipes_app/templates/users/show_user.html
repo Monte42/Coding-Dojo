@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+
+{% block title %}{{user.print_full_name()}}{% endblock %}
+
+
+
+{% block content %}
+    <h1>{{user.print_full_name()}}</h1>
+
+    <div class="flex-wrapper flex-evenly">
+        <div class="col">
+            <h2>Users Recipes</h2>
+            <table>
+                <tr>
+                    <th>Recipe Name</th>
+                    <th>Cooked uner 30 mins</th>
+                    <th>Date Cooked</th>
+                    <th>Link</th>
+                </tr>
+                {% for recipe in user.recipes %}
+                    {% if recipe.name == None %}
+                        </table>
+                        <h3>No recipes to show...</h3>
+                    {% else %}
+                        <tr>
+                            <td>{{ recipe.name }}</td>
+                            <td>{{ recipe.is_under_30_mins }}</td>
+                            <td>{{ recipe.date_cooked.strftime('%B %d, %y') }}</td>
+                            <td><a href="/recipes/{{recipe.id}}">View</a></td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col">
+            <h2>User Info</h2>
+            <h3>Email: {{ user.email }}</h3>
+            <h3>Date Joined: {{ user.created_at.strftime('%B %d, %y') }}</h3>
+            {% if session.user_id == user.id %}
+                <a href="/users/{{user.id}}/edit">Edit Account</a>
+                <a href="/users/{{user.id}}/delete">Delete Account</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+.flex-wrapper{
+    display: flex;
+}
+
+.flex-evenly{
+    justify-content: space-evenly;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+form{
+    gap: 10px;
+    align-items: flex-end;
+}
+
+h1,h2,h3,h4,h5{
+    text-align: center;
+}
+
+footer{
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+}

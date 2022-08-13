@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+
+{% block title %}All Users{% endblock %}
+
+
+{% block content %}
+    <h1>All users</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Number of Reciped</th>
+            <th>Date Joined</th>
+            <th>View Profile</th>
+        </tr>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.print_full_name() }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.get_number_of_recipes() }}</td>
+                <td>{{ user.created_at.strftime('%B %d, %y') }}</td>
+                <td><a href="/users/{{user.id}}">View User</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

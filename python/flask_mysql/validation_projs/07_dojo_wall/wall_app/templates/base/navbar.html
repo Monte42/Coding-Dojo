@@ -1,0 +1,13 @@
+{% if session.get('user_id') %}
+    <div class="navbar">
+        <div id="logo">
+            <h2>codingDojo Wall</h2>
+            <div>
+                <span>Welcome, "USER"</span>
+                <a href="#">Home</a>
+                <a href="#">Messages</a>
+                <a href="#">Logout</a>
+            </div>
+        </div>
+    </div>
+{% endif %}
