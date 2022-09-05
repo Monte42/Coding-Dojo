@@ -46,12 +46,27 @@ class Recipe:
     @classmethod
     def get_all_recipes(cls):
         query = '''
-        SELECT * FROM recipes;
+        SELECT * FROM recipes
+        JOIN users
+        ON recipes.user_id = users.id;
         '''
         results = connectToMySQL(db).query_db(query)
         all_recipes = []
         for recipe in results:
-            this_recipe = cls.get_recipe_by_id(recipe['id'])
+            recipe_data = {
+                'id': recipe['id'],
+                'user_id': recipe['user_id'],
+                'name': recipe['name'],
+                'description': recipe['description'],
+                'instructions': recipe['instructions'],
+                'date_cooked': recipe['date_cooked'],
+                'is_under_30_mins': recipe['is_under_30_mins'],
+                'created_at': recipe['created_at'],
+                'updated_at': recipe['updated_at'],
+            }
+            this_recipe = cls(recipe_data)
+            user_data = cls.create_user_data(recipe)
+            this_recipe.user = user.User(user_data)
             all_recipes.append(this_recipe)
         return all_recipes
 
@@ -66,16 +81,10 @@ class Recipe:
         '''
         results = connectToMySQL(db).query_db(query,data)
         this_recipe = cls(results[0])
-        creator = {
-            'id': results[0]['users.id'],
-            'first_name': results[0]['first_name'],
-            'last_name': results[0]['last_name'],
-            'email': results[0]['email'],
-            'password': results[0]['password'],
-            'created_at': results[0]['users.created_at'],
-            'updated_at': results[0]['users.updated_at']
-        }
+        for recipe in results:
+            creator = cls.create_user_data(recipe)
         this_recipe.user = user.User(creator)
+        print(results[0]['user_id'])
         return this_recipe
 
 
@@ -146,3 +155,16 @@ class Recipe:
         parsed_data['date_cooked'] = form_data['date_cooked']
         parsed_data['is_under_30_mins'] = form_data['is_under_30_mins']
         return parsed_data
+
+    @staticmethod
+    def create_user_data(data):
+        user_data = {
+            'id': data['users.id'],
+            'first_name': data['first_name'],
+            'last_name': data['last_name'],
+            'email': data['email'],
+            'password': data['password'],
+            'created_at': data['users.created_at'],
+            'updated_at': data['users.updated_at']
+        }
+        return user_data

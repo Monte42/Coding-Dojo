@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+
+    {% include 'base/navbar.html' %}
+
+    <div style="padding: 40px; width: 60%;">
+        <h2 style="text-align: left;">
+            {{sighting.location}} on {{sighting.convert_date_of_sighting()}}
+        </h2>
+        <br>
+        <h3 style="text-align: left;">
+            What Happened:
+        </h3>
+        <h3 style="text-align: left;">
+            <span style="font-weight: 200;">{{sighting.description}}</span>
+        </h3>
+        <br>
+        <h3 style="text-align: left;">
+            Number of Sasquacthes: <span style="font-weight: 200;">{{sighting.number_of_sasquatch}}</span>
+        </h3>
+        <br>
+        <h3 style="text-align: left;">
+            Reported By: <span style="font-weight: 200;">{{sighting.user.print_full_name()}}</span>
+        </h3>
+    </div>
+    
+{% endblock %}

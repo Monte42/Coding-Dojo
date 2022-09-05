@@ -1,0 +1,50 @@
+{% extends 'base/base.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+
+    {% include 'base/navbar.html' %}
+
+    <h2>Report a Sighting</h2>
+
+    <div class="flex-wrapper flex-center">
+        
+        <form action="/new/sighting" method="POST">
+            <div class="flex-wrapper flex-evenly flex-gap">
+                <div class="flex-wrapper flex-column flex-gap">
+                    <label>
+                        Location: <br>
+                        <input type="text" name="location" value="{{data.location}}">
+                    </label>
+                    <label>
+                        What Happened: <br>
+                        <textarea name="description" cols="30" rows="4">{{data.description}}</textarea>
+                    </label>
+                </div>
+                <div class="flex-wrapper flex-column flex-gap flex-end-align flex-center">
+                    <label>
+                        Date of Sighting: <br>
+                        <input type="date" name="date_of_sighting" value="{{data.date_of_sighting}}">
+                    </label>
+                    {% if data == None %}
+                        <label>
+                            Number of Sasquacthes: <br>
+                            <input type="number" name="number_of_sasquatch" value="0">
+                        </label>
+                    {% else %}
+                        <label>
+                            Number of Sasquacthes: <br>
+                            <input type="number" name="number_of_sasquatch" value="{{data.number_of_sasquatch}}">
+                        </label>
+                    {% endif %}
+                </div>
+            </div>
+            <input type="submit" value="Report">
+        
+        </form>
+    </div>
+
+
+{% endblock %}

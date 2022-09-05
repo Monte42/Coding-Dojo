@@ -31,7 +31,6 @@ class User:
     # FORM VALIDATION
     @staticmethod
     def validate_user_registration_form(user):
-        existing_users = get_usernames()
         is_valid = True
         if not EMAIL_REGEX.match(user['email']):
             flash("Invalid Email...")
@@ -45,6 +44,7 @@ class User:
             is_valid = False
         if user['password1'] != user['password2']:
             flash('Passwords do not match...')
+            is_valid = False
         if len(user['first_name']) < 2:
             flash('First name must be at least 2 characters long')
             is_valid = False
@@ -58,6 +58,10 @@ class User:
             flash('Sorry, that name is already in use...')
             is_valid = False
         return is_valid
+
+    @staticmethod
+    def validate_user_edit_form():
+        pass
 
 
 

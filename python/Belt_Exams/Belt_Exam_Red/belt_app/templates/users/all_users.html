@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %}
+
+{% block title %}All Users{% endblock %}
+
+
+{% block content %}
+
+    <h1>Welcome, {{session.user_name}}</h1>
+    {% include 'base/navbar.html' %}
+    <br><hr>
+
+{% endblock %}

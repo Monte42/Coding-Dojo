@@ -1,6 +1,6 @@
-from recipes_app import app
+from belt_app import app
 from flask import render_template, redirect, request,flash, session
-from recipes_app.models import user
+from belt_app.models import user
 
 
 # ====================
@@ -8,8 +8,9 @@ from recipes_app.models import user
 # ====================
 @app.route('/')
 def login_register_page():
-    if session.get('user_id'): return redirect('/recipes')
-    return render_template('index.html', data = None)
+    if session.get('user_id'):
+        return redirect('/users') # WHERE DO YOU WANT TO REDIRECT TO
+    return render_template('index.html',registration_data=None,login_data=None)
 
 # =================
 # CREATE USER ROUTE
@@ -17,8 +18,8 @@ def login_register_page():
 @app.route('/register', methods=['POST'])
 def register_user():
     if user.User.create_user(request.form):
-        return redirect('/recipes')
-    return render_template('index.html',data = request.form)
+        return redirect('/users') # WHERE DO YOU WANT TO REDIRECT TO
+    return render_template('index.html',registration_data=request.form,login_data=None)
 
 # ===============
 # LOGIN USER POST
@@ -26,8 +27,8 @@ def register_user():
 @app.route('/login', methods=["POST"])
 def login():
     if user.User.login_user(request.form):
-        return redirect('/recipes')
-    return render_template('index.html',data = request.form)
+        return redirect('/users') # WHERE DO YOU WANT TO REDIRECT TO
+    return render_template('index.html',registration_data =None,login_data=request.form)
 
 # =================
 # LOGOUT USER ROUTE
@@ -74,7 +75,7 @@ def update_user(id):
                 return redirect('/users')
             return render_template('users/edit_user.html', data=this_user)
         if user.User.update_user(request.form):
-            return redirect(f'/users/{id}')
+            return redirect(f'/users') # WHERE DO YOU WANT TO REDIRECT
         return redirect(f'/users/{id}/edit')
     return redirect('/')
 

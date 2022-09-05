@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getting Github</title>
+</head>
+<body>
+
+    <div>
+        <h1>Look up Github User</h1>
+        Enter a User Login Name: <br>
+        <input type="text" id="user"><br>
+        What Info do you want? <br>
+        <input type="checkbox" name="login" class="desired_data"> Login Name <br>
+        <input type="checkbox" name="name" class="desired_data"> user Name <br>
+        <input type="checkbox" name="id" class="desired_data"> User Id <br>
+        <input type="checkbox" name="public_repos" class="desired_data"> Number of repos <br>
+        <input type="checkbox" name="avatar_url" class="desired_data"> User Img <br>
+        <button onclick="getCoderData()">Get User</button>
+    </div>
+    <div id="coderData">
+        
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

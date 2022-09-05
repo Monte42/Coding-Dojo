@@ -1,15 +1,18 @@
-{% extends "base/base.html" %}
+{% extends 'base/base.html' %}
 
-{% block title %}Update user{% endblock %}
+{% block title %}{% endblock %}
 
 
 {% block content %}
+
     <h1>Edit {{session.user_name}}</h1>
+    {% include 'base/navbar.html' %}
+    <hr><br>
 
     <div class="flex-wrapper flex-evenly">
         <div>
             <h2>Edit Form</h2>
-            <form class="flex-wrapper flex-column flex-ends flex-gap" action="/users/{{data.id}}/edit" method="POST">
+            <form class="flex-wrapper flex-column flex-end flex-gap" action="/users/{{data.id}}/edit" method="POST">
                 <label>
                     First Name:
                     <input type="text" name="first_name" value="{{data.first_name}}">
@@ -26,4 +29,5 @@
             </form>
         </div>
     </div>
+
 {% endblock %}

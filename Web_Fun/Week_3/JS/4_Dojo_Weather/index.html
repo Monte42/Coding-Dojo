@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>Weather Forecast</title>
 </head>
@@ -13,9 +14,9 @@
         <nav>
             <h1>DojoWeather</h1>
             <ul>
-                <li onclick="loadReport(this)">Burbank</li>
-                <li onclick="loadReport(this)">Chicago</li>
-                <li onclick="loadReport(this)">Dallas</li>
+                <li onclick="getWeather(this)">Burbank</li>
+                <li onclick="getWeather(this)">Chicago</li>
+                <li onclick="getWeather(this)">Dallas</li>
             </ul>
         </nav>
     </header>
@@ -32,10 +33,10 @@
                     </select>
                 </form>
             </section>
-            <div>
+            <div id="daily">
                 <div class="col">
                     <h3>Today</h3>
-                    <img src="./assets/some_rain.png" alt="Rain">
+                    <img src="./assets/Rain.png" alt="Rain">
                     <p>Some rain</p>
                     <div>
                         <span class="high"><span class="temp">24</span>&deg;</span>
@@ -44,7 +45,7 @@
                 </div>
                 <div class="col">
                     <h3>Tomorrow</h3>
-                    <img src="./assets/some_sun.png" alt="Rain">
+                    <img src="./assets/Clear.png" alt="Rain">
                     <p>Some sun</p>
                     <div>
                         <span class="high"><span class="temp">27</span>&deg;</span>
@@ -53,7 +54,7 @@
                 </div>
                 <div class="col">
                     <h3>Friday</h3>
-                    <img src="./assets/some_clouds.png" alt="Rain">
+                    <img src="./assets/Clouds.png" alt="Rain">
                     <p>Some clouds</p>
                     <div>
                         <span class="high"><span class="temp">21</span>&deg;</span>
@@ -62,7 +63,7 @@
                 </div>
                 <div class="col">
                     <h3>Saturday</h3>
-                    <img src="./assets/some_sun.png" alt="Rain">
+                    <img src="./assets/Clear.png" alt="Rain">
                     <p>Some sun</p>
                     <div>
                         <span class="high"><span class="temp">26</span>&deg;</span>
