@@ -10,7 +10,7 @@ public class PlayList {
         ArrayList<String> allTracks = new ArrayList<>();
         Set<String> tracks = playList.keySet();
         for (String track : tracks){
-            allTracks.add(String.format("\n\n%s:\n%s",track, playList.get(track)));
+            allTracks.add(String.format("%s:\n%s\n\n",track, playList.get(track)));
         }
         return allTracks;
     }

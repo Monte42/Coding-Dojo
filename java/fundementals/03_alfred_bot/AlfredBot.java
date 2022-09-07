@@ -1,8 +1,11 @@
 public class AlfredBot {
     public static void main(String[] args) {
 
-                // Make an instance of AlfredQuotes to access all its methods.
+                // // Make an instance of AlfredQuotes to access all its methods.
                 AlfredQuotes alfredBot = new AlfredQuotes();
+                System.out.println(alfredBot.revString("Hello World!"));
+                System.out.println(alfredBot.palidrome("racecar"));
+                System.out.println(alfredBot.palidrome("mop"));
                 
                 // Make some test greetings, providing any necessary data
                 String testGreeting = alfredBot.basicGreeting();

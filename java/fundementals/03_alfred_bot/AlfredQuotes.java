@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Date;
 public class AlfredQuotes {
 
@@ -35,4 +34,35 @@ public class AlfredQuotes {
         String[] tempArr = conversation.split(" ");
         return tempArr;
     }
+
+
+
+
+
+
+
+
+
+    public String revString(String testStr){
+
+        String reversedStr = "";
+        
+        int strlength = testStr.length()-1;
+        for (int i=strlength;i>=0;i--){
+            reversedStr += testStr.charAt(i);;
+        }
+        return reversedStr;
+    }
+
+
+    
+    public Boolean palidrome(String testStr){ 
+        String reversedStr = revString(testStr);
+        if (reversedStr.equals(testStr)){
+            return true;
+        }
+        return false;
+    }
+
 }
+
