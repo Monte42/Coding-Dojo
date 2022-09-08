@@ -10,13 +10,15 @@ public class ExceptionTest {
         myList.add("13");
         myList.add("hello world");
         myList.add(48);
-        myList.add("Goodbye World");
 
         try{
             appTest.castToInt(myList);
         } catch (IncorrectValueType e) {
             System.out.println("********* ERROR: "+e+" ***********");
         }
+
+
+
 
         appTest.testConnection();
     }
