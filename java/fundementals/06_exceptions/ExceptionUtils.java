@@ -7,6 +7,7 @@ public class ExceptionUtils {
         System.out.println("\n Still connected...");
     }
 
+
     public ArrayList<Object> castToInt(ArrayList<Object> arr) throws IncorrectValueType{
         ArrayList<Object> intArr = new ArrayList<>();
         for (int i=0;i<arr.size();i++){

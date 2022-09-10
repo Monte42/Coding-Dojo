@@ -12,6 +12,9 @@ public class ExceptionTest {
         myList.add(48);
         myList.add("Goodbye World");
 
+
+
+        
         try{
             appTest.castToInt(myList);
         } catch (IncorrectValueType e) {
