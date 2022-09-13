@@ -2,6 +2,7 @@ package com.gnd.hellohuman;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,6 +29,11 @@ public class HellohumanApplication {
 		} else {
 			return "Hello "+name;
 		}
+	}
+	
+	@RequestMapping("/{fname}/{lname}")
+	public String pathVar(@PathVariable("fname") String fname, @PathVariable("lname") String lname) {
+		return "Hello Mr. "+fname+" "+lname;
 	}
 	
 }
