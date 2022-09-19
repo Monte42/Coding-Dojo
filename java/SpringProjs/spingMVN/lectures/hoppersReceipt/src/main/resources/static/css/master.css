@@ -1,0 +1,9 @@
+.flex-wrapper{
+	display: flex;
+	flex-direction: column;
+	gap:20px;
+}
+
+h1, h2 {
+	text-align: center;
+}

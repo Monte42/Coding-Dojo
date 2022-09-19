@@ -8,12 +8,12 @@
 		<version>2.7.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.gnd.hellohuman</groupId>
-	<artifactId>hellohuman</artifactId>
+	<groupId>com.gnd.demo</groupId>
+	<artifactId>JSPDemo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>hellohuman</name>
-	<description>09 daikichi</description>
+	<name>JSPDemo</name>
+	<description>Java Server Pages Standard Tag Library</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -40,9 +40,13 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-	    	<groupId>org.apache.tomcat.embed</groupId>
-	        <artifactId>tomcat-embed-jasper</artifactId>
-	    </dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>	
+		<dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>jstl</artifactId>
+        </dependency>
 	</dependencies>
 
 	<build>

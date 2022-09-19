@@ -1,0 +1,19 @@
+.conatiner{
+	padding: 20px 40px;	
+}
+
+h1{
+	color:pink;
+}
+
+table{
+	border: 20px solid pink;
+}
+
+tr{
+	border-bottom: 1px solid pink;
+}
+
+th,td{
+	padding: 5px 60px 5px 20px;
+}

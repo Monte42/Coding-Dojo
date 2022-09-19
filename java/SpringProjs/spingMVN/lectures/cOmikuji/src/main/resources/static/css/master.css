@@ -1,0 +1,38 @@
+.container *{
+	text-align:center;
+}
+
+.omikuji{
+	width: 60%;
+	margin: 30px auto;
+	padding: 10px;
+	border: 2px solid black;
+	background: lightblue;
+}
+
+form, label{
+	display: flex;
+	flex-direction: column;
+}
+
+form{
+	margin: 0 auto;
+	width: fit-content;
+	padding: 20px 10%;
+	border:1px solid black;
+}
+
+label{
+	align-items: start;
+}
+
+input[type="submit"]{
+	width: fit-content;
+	padding:5px 10px;
+	color:white;
+	background-color: steelblue;
+	border: none;
+	border-radius: 5px;
+	margin-left: 75%;
+	box-shadow: 2px 3px 5px black;
+}
