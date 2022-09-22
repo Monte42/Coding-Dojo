@@ -1,7 +1,6 @@
 package com.gnd.motorcycles.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -28,19 +27,20 @@ public class BookService {
     }
     // retrieves a book
     public Book findBook(Long id) {
-        Optional<Book> optionalBook = bookRepository.findById(id);
-        if(optionalBook.isPresent()) {
-            return optionalBook.get();
-        } else {
-            return null;
-        }
+    	return bookRepository.findById(id).orElse(null);
+//        Optional<Book> optionalBook = bookRepository.findById(id);
+//        if(optionalBook.isPresent()) {
+//            return optionalBook.get();
+//        } else {
+//            return null;
+//        }
     }
     // update a book
     public Book updateBook(Book b) {
     	return bookRepository.save(b);
     }
     // delete a book
-    public void deleteBookById(Long id) {
+    public void destroy(Long id) {
     	bookRepository.deleteById(id);
     }
 }

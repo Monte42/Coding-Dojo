@@ -1,4 +1,4 @@
-package com.gnd.motorcycles.models;
+package com.gnd.safetravels.models;
 
 import java.util.Date;
 
@@ -15,122 +15,112 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
-@Table(name="books")
-public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @NotNull
-    @Size(min = 5, max = 200, message="Title must be at least 5 characters")
-    private String title;
-    @NotNull
-    @Size(min = 5, max = 200, message="Description must be at least 5 characters")
-    private String description;
-    @NotNull
-    @Size(min = 3, max = 40, message="Language must be at least 3 characters")
-    private String language;
-    @NotNull
-    @Min(value=100, message="Book must cantain at least 100 pages")
-    private Integer numberOfPages;
-    // This will not allow the createdAt column to be updated after creation
-    @Column(updatable=false)
+@Table(name="expenses", schema="expenses")
+public class Expense {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@NotNull
+	@Size(min = 5, max = 200, message="Title must be at least 5 characters")
+	private String title;
+	@NotNull
+	@Size(min = 3, max = 100, message="Vendor must be at least 3 characters")
+	private String vendor;
+	@NotNull
+	@Size(min = 5, max = 200, message="Description must be at least 5 characters")
+	private String description;
+	@Min(1)
+	@Column(scale=2)
+	private double amount;
+	@Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createdAt;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
     
     
-	public Book() {}
-	
-	
-	public Book(Long id,String title,String description,String language,int numberOfPages) {
+
+	public Expense() {}    
+
+	public Expense(Long id,String title,String vendor, String description,
+			double amount, Date createdAt, Date updatedAt) {
 		this.id = id;
 		this.title = title;
+		this.vendor = vendor;
 		this.description = description;
-		this.language = language;
-		this.numberOfPages = numberOfPages;
-	}
-
-
-	public Book(String title, String description, String language, int numberOfPages) {
-		this.title = title;
-		this.description = description;
-		this.language = language;
-		this.numberOfPages = numberOfPages;
+		this.amount = amount;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
 	}
 	
-
+	public Expense(String title,String vendor, String description,
+			double amount) {
+		this.title = title;
+		this.vendor = vendor;
+		this.description = description;
+		this.amount = amount;
+	}
+	
+	
 	public Long getId() {
 		return id;
 	}
-
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
 	public String getTitle() {
 		return title;
 	}
-
 
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
+	public String getVendor() {
+		return vendor;
+	}
+
+	public void setVendor(String vendor) {
+		this.vendor = vendor;
+	}
 
 	public String getDescription() {
 		return description;
 	}
 
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-
-	public String getLanguage() {
-		return language;
+	public double getAmount() {
+		return amount;
 	}
 
-
-	public void setLanguage(String language) {
-		this.language = language;
+	public void setAmount(double amount) {
+		this.amount = amount;
 	}
-
-
-	public Integer getNumberOfPages() {
-		return numberOfPages;
-	}
-
-
-	public void setNumberOfPages(Integer numberOfPages) {
-		this.numberOfPages = numberOfPages;
-	}
-
 
 	public Date getCreatedAt() {
 		return createdAt;
 	}
 
-
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
-
 
 	public Date getUpdatedAt() {
 		return updatedAt;
 	}
 
-
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 
-
+	
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();
@@ -139,5 +129,4 @@ public class Book {
 	protected void onUpdate() {
 		this.updatedAt = new Date();
 	}
-	
 }

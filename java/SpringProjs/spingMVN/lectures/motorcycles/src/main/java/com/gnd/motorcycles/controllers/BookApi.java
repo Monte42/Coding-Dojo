@@ -43,13 +43,12 @@ public class BookApi {
     				@RequestParam(value="description") String desc, 
     				@RequestParam(value="language") String lang, 
     				@RequestParam(value="pages") Integer numOfPages,
-    				@PathVariable("id") String id) {
-        Book book = new Book(new Long(id), title, desc, lang, numOfPages );
+    				@PathVariable("id") Long id) {
+        Book book = new Book(id, title, desc, lang, numOfPages );
         return bookService.updateBook(book);
     }
     @RequestMapping("books/{id}/delete")
-    public void delete(@PathVariable("id") String id) {
-    	Long i = new Long(id);
-    	bookService.deleteBookById(i);
+    public void delete(@PathVariable("id") Long id) {
+    	bookService.destroy(id);
     }
 }
