@@ -11,7 +11,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,13 +22,13 @@ public class Expense {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@NotNull
+	@NotBlank(message="Title can not be blank")
 	@Size(min = 5, max = 200, message="Title must be at least 5 characters")
 	private String title;
-	@NotNull
+	@NotBlank(message="Vendor can not be blank")
 	@Size(min = 3, max = 100, message="Vendor must be at least 3 characters")
 	private String vendor;
-	@NotNull
+	@NotBlank(message="Description can not be blank")
 	@Size(min = 5, max = 200, message="Description must be at least 5 characters")
 	private String description;
 	@Min(1)

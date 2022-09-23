@@ -1,0 +1,11 @@
+.flex-wrapper{display:flex;}
+.flex-column{flex-direction: column;}
+.flex-around{justify-content: space-around;}
+.wrap-flex{flex-wrap: wrap;}
+.flex-gap{gap: 25px;}
+.simple-border{border: 1px solid black;}
+.overflow-scroll{overflow: scoll;}
+.text-right{text-align: right;}
+.text-center{text-align: center;}
+.padding-20{padding: 20px;}
+.top-margin-20{margin-top: 20px;}

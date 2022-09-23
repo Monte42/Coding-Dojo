@@ -15,11 +15,23 @@ public class ExpenseService {
 		this.expenseRepo = expenseRepo;
 	}
 	
-	public Expense createExpense(Expense e) {
+//	CREATE // Update
+	public Expense saveExpense(Expense e) {
 		return expenseRepo.save(e);
 	}
 	
+//	READ
 	public List<Expense> allExpenses(){
 		return expenseRepo.findAll();
 	}
+	
+	public Expense fetchBookById(Long id) {
+		return expenseRepo.findById(id).orElse(null);
+	}
+	
+//	DELETE
+	public void destroy(Long id) {
+		expenseRepo.deleteById(id);
+	}
 }
+
