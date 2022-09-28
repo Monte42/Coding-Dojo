@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Page Tite</title>
+        <title>All Books</title>
         <!-- for Bootstrap CSS -->
 		<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" /> 
 		<script src="/webjars/jquery/jquery.min.js"></script> 

@@ -2,12 +2,16 @@ package com.gnd.authentication.models;
 
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -37,6 +41,8 @@ public class User {
 	@NotBlank(message="Confirm can not be empty")
 	@Size(min=8, max=255, message="Confirm password must between 8 an 30 characters")
 	private String confirm;
+	@OneToMany(mappedBy="postedBy",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	private List<Book> books;
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
@@ -64,6 +70,13 @@ public class User {
 		this.confirm = confirm;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
+	}
+	public User(String username,String email, String password,
+			String confirm,Date createdAt,Date updatedAt) {
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.confirm = confirm;
 	}
 	
 	
