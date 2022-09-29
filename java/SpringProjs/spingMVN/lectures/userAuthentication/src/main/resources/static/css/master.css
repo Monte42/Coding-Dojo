@@ -40,3 +40,7 @@
 .text_right{
     text-align: right;
 }
+.error{
+	dislpay:block;
+	color:red;
+}

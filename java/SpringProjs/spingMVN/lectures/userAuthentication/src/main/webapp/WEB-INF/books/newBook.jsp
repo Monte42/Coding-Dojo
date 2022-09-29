@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Create Book</title>
+        <title>Book Share</title>
         <!-- for Bootstrap CSS -->
 		<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" /> 
 		<script src="/webjars/jquery/jquery.min.js"></script> 
@@ -17,7 +17,34 @@
 <body>
 
     <div class="container">
-		<h1>Hello World</h1>
+    
+    	<div class="flex-wrapper flex-between-justify">
+		<h1>Add a Book to Your Shelf</h1>    	
+    	<a href="/books">Back to the shelves</a>
+    	</div>
+		
+		<div style="margin-bottom: 30px">
+			<form:errors class="error" path="title"/>
+			<form:errors class="error" path="author"/>
+			<form:errors class="error" path="thoughts"/>
+		</div>
+	
+		<form:form action="#" method="POST" modelAttribute="book">
+			<p>
+				<form:label path="title">Title: </form:label>
+				<form:input path="title"/>
+			</p>
+			<p>
+				<form:label path="author">Author:  </form:label>
+				<form:input path="author"/>
+			</p>
+			<p>
+				<form:label path="thoughts">Thoughts: </form:label>
+				<form:textarea path="thoughts"/>
+			</p>
+			<input type="submit" value="Submit">
+		</form:form>
+    
     </div>
     
     <!-- <script type="text/javascript" src="js/script.js"></script> -->

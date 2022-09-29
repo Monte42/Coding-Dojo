@@ -71,12 +71,9 @@ public class User {
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
-	public User(String username,String email, String password,
-			String confirm,Date createdAt,Date updatedAt) {
+	public User(String username,String email) {
 		this.username = username;
 		this.email = email;
-		this.password = password;
-		this.confirm = confirm;
 	}
 	
 	
@@ -123,6 +120,12 @@ public class User {
 	}
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+	public List<Book> getBooks() {
+		return books;
+	}
+	public void setBooks(List<Book> books) {
+		this.books = books;
 	}
 	
 	

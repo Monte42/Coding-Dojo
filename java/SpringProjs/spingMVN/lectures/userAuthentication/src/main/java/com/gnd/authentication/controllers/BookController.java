@@ -36,18 +36,18 @@ public class BookController {
 	}
 	@PostMapping("/new")
 	public String createBook(@Valid @ModelAttribute("book") Book book, BindingResult result, HttpSession session) {
-		
 		if (result.hasErrors()) {
 			return "books/newBook.jsp";
 		}
-		bookServe.saveBook(book, session);
+		book.setPostedBy(userServe.userById((Long) session.getAttribute("userId")));
+		bookServe.saveBook(book);
 		return "redirect:/books";
 	}
 	
 	
 //	READ
 	@GetMapping("")
-	public String homePage(Model model) {
+	public String homePage(Model model, HttpSession session) {
 		model.addAttribute("books", bookServe.allBooks());
 		return "books/home.jsp";
 	}
@@ -69,17 +69,23 @@ public class BookController {
 	public String updateBook(
 					@Valid @ModelAttribute("book") Book book, 
 					BindingResult result,
-					@PathVariable Long id	) {
+					@PathVariable Long id,
+					HttpSession session) {
 		if (result.hasErrors()) {
 			return "books/editBook.jsp";
 		}
-		return "redirect:/"+id;
+		book.setPostedBy(userServe.userById((Long) session.getAttribute("userId")));
+		bookServe.saveBook(book);
+		return "redirect:/books/"+id;
 	}
 	
 //	DELETE
 	@DeleteMapping("/delete/{id}")
-	public String deleteBook(@PathVariable Long id) {
-		bookServe.destroy(id);
+	public String deleteBook(@PathVariable Long id, HttpSession session) {
+		Book book = bookServe.bookById(id);
+		if ((Long) session.getAttribute("userId") == book.getId()) { 
+			bookServe.destroy(id);
+		}
 		return "redirect:/books";
 	}
 	

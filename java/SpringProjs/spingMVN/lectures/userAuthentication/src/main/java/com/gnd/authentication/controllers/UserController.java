@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.gnd.authentication.models.UpdateUser;
 import com.gnd.authentication.models.User;
 import com.gnd.authentication.services.UserService;
 
@@ -39,23 +40,27 @@ public class UserController {
 		if (session.getAttribute("userId").equals(id)) return "users/editUser.jsp";
 		return "redirect:/books";
 	}
-	
 	@PutMapping("edit/{id}")
-	public String updateUser(@Valid @ModelAttribute("user") User user, BindingResult result, @PathVariable("id") Long id, HttpSession session) {
+	public String updateUser(@Valid @ModelAttribute("user") UpdateUser user, BindingResult result, @PathVariable Long id, HttpSession session) {
 		if (!session.getAttribute("userId").equals(id)) return "redirect:/books";
 		if (result.hasErrors()) {
-			System.out.println("errors");
 			return "users/editUser.jsp";
 		}
-		System.out.println("no errors");
 		userServe.updateUser(user);
+		User updateUser = userServe.userById(id);
+		session.setAttribute("username", updateUser.getUsername());
 		return "redirect:/books";
 	}
 
 //  DELETE
 	@DeleteMapping("delete/{id}")
-	public void deleteUser(@PathVariable Long id, HttpSession session) {
-		if (session.getAttribute("userId") == id) userServe.destroy(id);
+	public String deleteUser(@PathVariable Long id, HttpSession session) {
+		if (session.getAttribute("userId") == id) { 
+			userServe.destroy(id);
+		}
+		session.removeAttribute("username");
+		session.removeAttribute("userId");
+		return "redirect:/";
 	}
 
 

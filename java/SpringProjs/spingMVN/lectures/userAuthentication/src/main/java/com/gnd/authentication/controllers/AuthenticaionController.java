@@ -38,12 +38,12 @@ public class AuthenticaionController {
 		if (userServe.userByEmail(newUser.getEmail())!=null) result.rejectValue("email", "Exists", "Email Taken");
 		if (!newUser.getPassword().equals(newUser.getConfirm())) result.rejectValue("confirm", "Matches", "Passwords dont match");
 		if (result.hasErrors()) {
-			System.out.println("errors");
 			model.addAttribute("newLogin", new LoginUser());
 			return "index.jsp";
 		}
 		User user = userServe.register(newUser);
 		session.setAttribute("userId", user.getId());
+		session.setAttribute("username", user.getUsername());
 		return "redirect:/books";
 	}
 	// Login
@@ -59,12 +59,14 @@ public class AuthenticaionController {
 			return "index.jsp";
 		}
 		session.setAttribute("userId", userServe.userByEmail(newLogin.getEmail()).getId());
+		session.setAttribute("username", userServe.userByEmail(newLogin.getEmail()).getUsername());
 		return "redirect:/books";
 	}
 	// Logout
 	@GetMapping("/logout")
 	public String logout(HttpSession session, Model model) {
 		session.removeAttribute("username");
+		session.removeAttribute("userId");
 		return "redirect:/";
 	}
 	

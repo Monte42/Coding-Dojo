@@ -2,8 +2,6 @@ package com.gnd.authentication.services;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +17,7 @@ public class BookService {
 	UserService userServe;
 	
 //	CREATE / UPDATE
-	public Book saveBook(Book book, HttpSession session) {
-		book.setPostedBy(userServe.userById((Long) session.getAttribute("userId")));
+	public Book saveBook(Book book) {
 		return bookRepo.save(book);
 	}
 	

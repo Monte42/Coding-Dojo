@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gnd.authentication.models.LoginUser;
+import com.gnd.authentication.models.UpdateUser;
 import com.gnd.authentication.models.User;
 import com.gnd.authentication.repository.UserRepository;
 
@@ -46,8 +47,9 @@ public class UserService {
 	}
 	
 //	UPDATE
-	public User updateUser(User user) {
-		return userRepo.save(user);
+	public int updateUser(UpdateUser user) {
+		userRepo.updateUserSetUsernameById(user.getUsername(), user.getId());
+		return userRepo.updateUserSetEmailById(user.getEmail(), user.getId());
 	}
 	
 //	DELETE

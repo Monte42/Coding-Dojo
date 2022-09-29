@@ -18,7 +18,7 @@
 
     <div class="container">
 		<h1>Edit User</h1>
-		<form:form action="/users/edit/${user.id}" method="POST" modelAttribute="user">
+		<form:form action="/users/edit/${userId}" method="POST" modelAttribute="user">
 			<input type="hidden" name="_method" value="put">
 			<p>
 				<form:label path="username">Username: </form:label>
@@ -29,16 +29,6 @@
 				<form:label path="email">Email: </form:label>
 				<form:input path="email"/>
 				<form:errors path="email"/>
-			</p>
-			<p>
-				<form:label path="password">Password: </form:label>
-				<form:input path="password"/>
-				<form:errors path="password"/>
-			</p>
-			<p>
-				<form:label path="comfirm">Confirm Password: </form:label>
-				<form:input path="comfirm"/>
-				<form:errors path="comfirm"/>
 			</p>
 			<input type="submit" value="Submit">
 		</form:form>
