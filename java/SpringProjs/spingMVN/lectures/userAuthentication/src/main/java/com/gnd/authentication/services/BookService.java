@@ -13,8 +13,6 @@ import com.gnd.authentication.repository.BookRepository;
 public class BookService {
 	@Autowired
 	BookRepository bookRepo;
-	@Autowired
-	UserService userServe;
 	
 //	CREATE / UPDATE
 	public Book saveBook(Book book) {

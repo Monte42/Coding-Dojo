@@ -36,7 +36,11 @@
 			</p>
 			<p>
 				<form:label path="author">Author:  </form:label>
-				<form:input path="author"/>
+				<form:select path="author">
+					<c:forEach var="auth" items="${authors}">
+						<form:option value="${auth.id}"><c:out value="${auth.name}"/></form:option>
+					</c:forEach>
+				</form:select>
 			</p>
 			<p>
 				<form:label path="thoughts">Thoughts: </form:label>

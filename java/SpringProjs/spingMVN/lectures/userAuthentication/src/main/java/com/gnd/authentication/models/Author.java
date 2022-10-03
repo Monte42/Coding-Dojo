@@ -1,45 +1,40 @@
 package com.gnd.authentication.models;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-
 @Entity
-@Table(name="books")
-public class Book {
+@Table(name="authors")
+public class Author {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	@NotBlank(message="Title can't be empty")
-	private String title;
-	@NotBlank(message="My thought can't be empty")
-	private String thoughts;
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="author_id")
-	private Author author;
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="user_id")
-	private User postedBy;
+	@NotBlank(message="Name can not be empty")
+	@Size(min=3, max=30, message="Name must between 3 an 30 characters")
+	private String name;
+	@OneToMany(mappedBy="author",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	private List<Book> books;
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
-	
 	@PrePersist
 	public void onCreate() {
 		this.createdAt = new Date();
@@ -50,51 +45,32 @@ public class Book {
 	}
 	
 	
-//	CONSTRUCTORS
-	public Book() {}
-	public Book(Long id,String title,Author author,String thoughts,
-			User postedBy,Date createdAt,Date updatedAt) {
+	
+	
+	
+	public Author() {}
+	public Author(Long id,String name,
+			Date createdAt, Date updatedAt) {
 		this.id = id;
-		this.title = title;
-		this.author = author;
-		this.thoughts = thoughts;
-		this.postedBy = postedBy;
+		this.name = name;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
 	
 	
 	
-//	GETTTERS SETTERS
+	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public Author getAuthor() {
-		return author;
-	}
-	public void setAuthor(Author author) {
-		this.author = author;
-	}
-	public String getThoughts() {
-		return thoughts;
-	}
-	public void setThoughts(String thoughts) {
-		this.thoughts = thoughts;
-	}
-	public User getPostedBy() {
-		return postedBy;
-	}
-	public void setPostedBy(User postedBy) {
-		this.postedBy = postedBy;
+	public void setTName(String name) {
+		this.name = name;
 	}
 	public Date getCreatedAt() {
 		return createdAt;
@@ -108,6 +84,9 @@ public class Book {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	
+	
+	
 	
 	
 	

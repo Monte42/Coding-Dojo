@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gnd.authentication.models.Book;
+import com.gnd.authentication.services.AuthorService;
 import com.gnd.authentication.services.BookService;
 import com.gnd.authentication.services.UserService;
 
@@ -27,16 +28,22 @@ public class BookController {
 	
 	@Autowired
 	BookService bookServe;
+
+	@Autowired
+	AuthorService aServe;
 	
 	
 //	CREATE
 	@GetMapping("/new")
-	public String bookForm(@ModelAttribute("book") Book book) {
+	public String bookForm(@ModelAttribute("book") Book book, Model model) {
+		model.addAttribute("authors", aServe.allAuthors());
 		return "books/newBook.jsp";
 	}
 	@PostMapping("/new")
-	public String createBook(@Valid @ModelAttribute("book") Book book, BindingResult result, HttpSession session) {
+	public String createBook(@Valid @ModelAttribute("book") Book book, BindingResult result,
+				Model model, HttpSession session) {
 		if (result.hasErrors()) {
+			model.addAttribute("authors", aServe.allAuthors());
 			return "books/newBook.jsp";
 		}
 		book.setPostedBy(userServe.userById((Long) session.getAttribute("userId")));
@@ -62,6 +69,7 @@ public class BookController {
 	@GetMapping("edit/{id}")
 	public String editBook(@PathVariable Long id, Model model) {
 		model.addAttribute("book", bookServe.bookById(id));
+		model.addAttribute("authors", aServe.allAuthors());
 		return "books/editBook.jsp";
 		
 	}
@@ -70,8 +78,10 @@ public class BookController {
 					@Valid @ModelAttribute("book") Book book, 
 					BindingResult result,
 					@PathVariable Long id,
+					Model model,
 					HttpSession session) {
 		if (result.hasErrors()) {
+			model.addAttribute("authors", aServe.allAuthors());
 			return "books/editBook.jsp";
 		}
 		book.setPostedBy(userServe.userById((Long) session.getAttribute("userId")));

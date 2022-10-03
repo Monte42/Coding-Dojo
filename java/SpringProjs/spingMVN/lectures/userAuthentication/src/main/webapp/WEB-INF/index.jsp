@@ -43,11 +43,11 @@
 					</p>
 					<p class="flex-wrapper flex-row flex-between-justify">
 						<form:label path="password">Password: </form:label>
-						<form:input path="password" type="password"/>
+						<form:password path="password"/>
 					</p>
 					<p class="flex-wrapper flex-row flex-between-justify flex-gap">
 						<form:label path="confirm">Confirm Password:</form:label>
-						<form:input path="confirm" type="password"/>
+						<form:password path="confirm"/>
 					</p>
 					<input type="submit" value="Sign Up">
 				</form:form>
@@ -68,7 +68,7 @@
 					</p>	
 					<p class="flex-wrapper flex-row flex-between-justify flex-gap">
 						<form:label path="password">Password: </form:label>
-						<form:input path="password" type="password"/>
+						<form:password path="password"/>
 					</p>	
 					<input type="submit" value="Login">			
 				</form:form>

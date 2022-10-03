@@ -17,9 +17,14 @@
 <body>
 
     <div class="container">
-		<h1><c:out value="${user.username}"/></h1>
-		<h3>Email: <c:out value="${user.email}"/></h3>
-		<h3>Date Joined: <c:out value="${user.createdAt}"/></h3>
+		<div class="flex-wrapper flex-between-justify">
+			<div>
+				<h1><c:out value="${user.username}"/></h1>
+				<h3>Email: <c:out value="${user.email}"/></h3>
+				<h3>Date Joined: <c:out value="${user.createdAt}"/></h3>
+			</div>
+			<a href="/books">Back to the shelves</a>
+		</div>
 		<br><br>
 		
 		<h2>Books Read</h2>

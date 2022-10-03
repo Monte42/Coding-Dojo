@@ -25,7 +25,7 @@
     		</div>
     		<div class="text-right">
     			<a href="/logout">Logout</a> <br>
-    			<a href="/books/new">+ Add to me shelf!</a>
+    			<a href="/books/new">+ Add to my shelf!</a>
     		</div>
     	</div>
 		<br><br>
