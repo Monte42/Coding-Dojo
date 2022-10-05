@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Ryders Club</title>
+        <title>My Garage</title>
         <!-- for Bootstrap CSS -->
 		<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" /> 
 		<script src="/webjars/jquery/jquery.min.js"></script> 
@@ -17,42 +17,45 @@
 <body>
 
     <div class="container">
-		<h1>Welcome <c:out value="${username}"/></h1>
-		<div class="flex-wrapper flex-around-justify">
-			<a href="/ryders/my_garage">My Garage</a>
-			<a href="/bikes/new">New Bike</a>
-			<a href="/brands/new">New Brand</a>
-			<a href="/logout">Logout</a>
-		</div>
+		<h1><c:out value="${ryder.username}"/></h1>
 		<br><br>
 		
-		<div class="flex-wrapper flex-around-justify">
-			<div>
-				<table>
-					<c:forEach var="ryder" items="${ryders}">
-						<tr>
-							<td><c:out value="${ryder.username}"/></td>
-							<td><a href="/ryders/${ryder.id}">View</a></td>
-						</tr>
-					</c:forEach>
-				</table>
-			</div>
-			
-			<div style="width:2px;height:400px;border:1px solid black;"></div>
-			
-			<div>
-				<table>
-					<c:forEach var="bike" items="${bikes}">
+		<h2>Garage</h2>
+		<c:choose>
+			<c:when test="${bikesInGarage.size()==0}">
+				<h3>You don't have any bikes yet</h3>
+			</c:when>
+			<c:otherwise>
+				<c:forEach var="bike" items="${bikesInGarage}">
+					<table>
 						<tr>
 							<td><c:out value="${bike.year}"/></td>
 							<td><c:out value="${bike.make.name}"/></td>
 							<td><c:out value="${bike.model}"/></td>
-							<td><a href="/bikes/${bike.id}">View</a></td>
 						</tr>
-					</c:forEach>
-				</table>
-			</div>
-		</div>
+					</table>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
+		
+		<br><hr><br>
+		
+		<h2>Add Bike To Garage</h2>
+		<h6>Bike not here? Add it <a href="/bikes/new">here</a></h6>
+		
+		<form action="/ryders/add_bike" method="POST">
+			<select name="bikeId">
+				<c:forEach var="bike" items="${bikesNotInGarage}">
+					<option value="${bike.id}">
+						<c:out value="${bike.year}"/>	
+						<c:out value="${bike.make.name}"/>	
+						<c:out value="${bike.model}"/>	
+					</option>
+				</c:forEach>
+			</select>
+			<input type="submit" value="Add">
+		</form>
+		
 		
     </div>
     

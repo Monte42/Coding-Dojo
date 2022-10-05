@@ -35,13 +35,11 @@ public class MainController {
 						BindingResult result, HttpSession session,
 						Model model
 					) {
-		if (ryderServe.ryderByEmail(newRyder.getEmail())!=null) result.rejectValue("email", "Exists", "Email Taken");
-		if (!newRyder.getPassword().equals(newRyder.getConfirm())) result.rejectValue("confirm", "Matches", "Passwords dont match");
+		Ryder ryder = ryderServe.register(newRyder, result);
 		if (result.hasErrors()) {
 			model.addAttribute("newLogin", new LoginRyder());
 			return "index.jsp";
 		}
-		Ryder ryder = ryderServe.register(newRyder);
 		session.setAttribute("userId", ryder.getId());
 		session.setAttribute("username", ryder.getUsername());
 		return "redirect:/ryders";

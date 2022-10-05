@@ -13,6 +13,9 @@
 .flex-ends-justify{
     justify-content: flex-end;
 }
+.flex-around-justify{
+    justify-content: space-around;
+}
 .flex-evenly-align{
     align-items: space-evenly;
 }
@@ -24,6 +27,9 @@
 }
 .flex-ends-align{
     align-items: flex-end;
+}
+.flex-around-align{
+    justify-content: space-around;
 }
 .flex-column{
     flex-direction: column;
@@ -37,7 +43,7 @@
 .text-center{
     text-align: center;
 }
-.text_right{
+.text-right{
     text-align: right;
 }
 .error{

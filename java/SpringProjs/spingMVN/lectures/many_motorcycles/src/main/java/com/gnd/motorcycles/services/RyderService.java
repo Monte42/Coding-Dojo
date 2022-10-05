@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
 import com.gnd.motorcycles.models.Bike;
 import com.gnd.motorcycles.models.LoginRyder;
@@ -22,7 +23,11 @@ public class RyderService {
 	
 //	CREATE
 //	Register / Login
-	public Ryder register(Ryder newRyder) {
+	public Ryder register(Ryder newRyder, BindingResult result) {
+		if (ryderRepo.existsRyderByEmail(newRyder.getEmail())) result.rejectValue("email", "Exists", "Email is already taken");
+		if (ryderRepo.existsRyderByUsername(newRyder.getUsername())) result.rejectValue("username", "Exists", "Username is already taken");
+		if (!newRyder.getPassword().equals(newRyder.getConfirm())) result.rejectValue("confirm", "Matches", "Passwords dont match");
+		if (result.hasErrors()) return null;
 		newRyder.setPassword(BCrypt.hashpw(newRyder.getPassword(), BCrypt.gensalt()));
 		return ryderRepo.save(newRyder);
 	}
@@ -63,6 +68,9 @@ public class RyderService {
 
 	
 //	UPDATE
+	public Ryder saveRyder(Ryder ryder) {
+		return ryderRepo.save(ryder);
+	}
 	public int updateRyder(UpdateRyder ryder) {
 		ryderRepo.updateRyderSetUsernameById(ryder.getUsername(), ryder.getId());
 		return ryderRepo.updateRyderSetEmailById(ryder.getEmail(), ryder.getId());

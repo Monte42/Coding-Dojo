@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Page Tite</title>
+        <title><c:out value="${ryder.username}"/></title>
         <!-- for Bootstrap CSS -->
 		<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" /> 
 		<script src="/webjars/jquery/jquery.min.js"></script> 
@@ -17,7 +17,35 @@
 <body>
 
     <div class="container">
-		<h1>Show Ryder</h1>
+		<h1><c:out value="${ryder.username}"/></h1>
+		<br><hr><br>
+		<h3>Email: <c:out value="${ryder.email}"/></h3>
+		<h3>Date Joined: <c:out value="${ryder.createdAt}"/></h3>
+		<br><br>
+		<h2><c:out value="${ryder.username}"/>'s Garage</h2>
+		<table>
+			<c:forEach var="bike" items="${ryder.bikes}">
+				<tr>
+					<td><c:out value="${bike.year}"/>
+					<td><c:out value="${bike.make.name}"/>
+					<td><c:out value="${bike.model}"/>
+				</tr>
+			</c:forEach>
+		</table>
+		<br>
+		
+		<c:choose>
+			<c:when test="${userId==ryder.id}">
+				<div class="flex-wrapper flex-gap">
+					<button><a href="/ryders/edit/${ryder.id}">Edit</a></button>
+					<span>|</span>
+					<form:form action="/ryders/delete/${ryder.id}" method="POST">
+						<input type="hidden" name="_method" value="delete">
+						<input type="submit" value="Delete">
+					</form:form>
+				</div>
+			</c:when>
+		</c:choose>
     </div>
     
     <!-- <script type="text/javascript" src="js/script.js"></script> -->

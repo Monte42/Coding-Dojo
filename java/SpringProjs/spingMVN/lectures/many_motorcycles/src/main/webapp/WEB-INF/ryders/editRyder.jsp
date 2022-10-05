@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Page Tite</title>
+        <title>Update Ryder</title>
         <!-- for Bootstrap CSS -->
 		<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" /> 
 		<script src="/webjars/jquery/jquery.min.js"></script> 
@@ -18,6 +18,20 @@
 
     <div class="container">
 		<h1>Edit Ryder</h1>
+		<form:form action="/ryders/edit/${ryder.id}" method="POST" modelAttribute="ryder">
+			<input type="hidden" name="_method" value="put">
+			<p>
+				<form:label path="username">Username: </form:label>
+				<form:input path="username"/>
+				<form:errors path="username"/>
+			</p>
+			<p>
+				<form:label path="email">Email: </form:label>
+				<form:input path="email"/>
+				<form:errors path="email"/>
+			</p>
+			<input type="submit" value="Submit">
+		</form:form>
     </div>
     
     <!-- <script type="text/javascript" src="js/script.js"></script> -->

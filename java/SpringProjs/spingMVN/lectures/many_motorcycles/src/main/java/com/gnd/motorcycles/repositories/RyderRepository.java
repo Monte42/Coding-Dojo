@@ -27,6 +27,8 @@ public interface RyderRepository extends CrudRepository<Ryder, Long>{
 	
 //	Rider for Login
 	Optional<Ryder> findByEmail(String email);
+	boolean existsRyderByEmail(String email);
+	boolean existsRyderByUsername(String username);
 	
 //	Rider Update
 	@Transactional

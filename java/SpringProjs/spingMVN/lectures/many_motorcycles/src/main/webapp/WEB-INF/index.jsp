@@ -27,27 +27,27 @@
 				<h2>Register</h2>
 				<form:form action="/register" method="POST" modelAttribute="newRyder">
 					<div style="margin-bottom: 30px;">
-						<form:errors class="error" path="username"/>
-						<form:errors class="error" path="email"/>
-						<form:errors class="error" path="password"/>
-						<form:errors class="error" path="confirm"/>
 					</div>
 					<p class="flex-wrapper flex-row flex-between-justify">
 						<form:label path="username">Username: </form:label>
 						<form:input path="username" type="text"/>
 					</p>
+					<form:errors class="error" path="username"/>
 					<p class="flex-wrapper flex-row flex-between-justify">
 						<form:label path="email">Email: </form:label>
 						<form:input path="email" type="email"/>
 					</p>
+					<form:errors class="error" path="email"/>
 					<p class="flex-wrapper flex-row flex-between-justify">
 						<form:label path="password">Password: </form:label>
 						<form:password path="password"/>
 					</p>
+					<form:errors class="error" path="password"/>
 					<p class="flex-wrapper flex-row flex-between-justify flex-gap">
 						<form:label path="confirm">Confirm Password:</form:label>
 						<form:password path="confirm"/>
 					</p>
+					<form:errors class="error" path="confirm"/>
 					<input type="submit" value="Sign Up">
 				</form:form>
 			</div>

@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 public class UpdateRyder {
 	private Long id;
 	@NotBlank(message="Username can not be empty")
-	@Size(min=3, max=30, message="User name must between 3 an 30 characters")
+	@Size(max=30, message="User name must between 3 an 30 characters")
 	private String username;
 	@NotBlank(message="Email can not be empty")
 	@Email(message="Please enter a valid email")

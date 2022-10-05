@@ -18,6 +18,35 @@
 
     <div class="container">
 		<h1>New Bike</h1>
+		<br><br>
+		
+		<form:form action="/bikes/new" method="POST" modelAttribute="bike">
+			<p>
+				<form:label path="year">Year: </form:label>
+				<form:input type="number" path="year" value="1885"/>
+				<form:errors class="error" path="year"/>
+			</p>
+			<p>
+				<form:label path="make">Make: </form:label>
+				<form:select path="make">
+					<c:forEach var="brand" items="${brands}">
+						<form:option value="${brand.id}"><c:out value="${brand.name}"/></form:option>
+					</c:forEach>
+				</form:select>
+				<h6>Don't see your brand? Add a brand <a href="/brands/new">here</a></h6>
+			</p>
+			<p>
+				<form:label path="model">Model: </form:label>
+				<form:input path="model" placeholder="ZX-6R"/>
+				<form:errors class="error" path="model"/>
+			</p>
+			<p>
+				<form:label path="size">Engine Size: </form:label>
+				<form:input type="number" path="size" value="49"/>
+				<form:errors class="error" path="size"/>
+			</p>
+			<input type="submit" value="Submit">
+		</form:form>
     </div>
     
     <!-- <script type="text/javascript" src="js/script.js"></script> -->

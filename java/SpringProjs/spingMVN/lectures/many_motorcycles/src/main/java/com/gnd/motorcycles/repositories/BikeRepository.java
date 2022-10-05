@@ -17,4 +17,6 @@ public interface BikeRepository extends CrudRepository<Bike, Long>{
 	
 	List<Bike> findAllByRyders(Ryder ryder);
 	List<Bike> findByRydersNotContains(Ryder ryder);
+	boolean existsBikeByModel(String model);
+	List<Bike> findAllByModel(String model);
 }

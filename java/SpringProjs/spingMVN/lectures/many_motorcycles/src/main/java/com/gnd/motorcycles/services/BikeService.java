@@ -24,6 +24,9 @@ public class BikeService {
 	public List<Bike> allBikes() {
 		return bikeRepo.findAll();
 	}
+	public Bike bikeById(Long id) {
+		return bikeRepo.findById(id).orElse(null);
+	}
 
 	// For Many to Many
 	public List<Bike> getAssignedRyders(Ryder ryder){
@@ -39,6 +42,16 @@ public class BikeService {
 		}else {
 			return null;
 		}
+	}
+	public boolean doesBikeExist(Bike bike) {
+		if (bikeRepo.existsBikeByModel(bike.getModel())) {
+			System.out.println("b");
+			List<Bike> existingBikes = bikeRepo.findAllByModel(bike.getModel());
+			for (Bike thisBike : existingBikes) {
+				if (thisBike.getYear() == bike.getYear() && thisBike.getSize() == bike.getSize()) return true;				
+			}
+		}
+		return false;
 	}
 	
 	
