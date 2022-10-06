@@ -1,7 +1,6 @@
 package com.gnd.motorcycles.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +26,9 @@ public class BikeService {
 	public Bike bikeById(Long id) {
 		return bikeRepo.findById(id).orElse(null);
 	}
+	public Bike findById(Long id) {
+		 return bikeRepo.findById(id).orElse(null);
+	}
 
 	// For Many to Many
 	public List<Bike> getAssignedRyders(Ryder ryder){
@@ -35,17 +37,15 @@ public class BikeService {
 	public List<Bike> getUnassignedRyders(Ryder ryder){
 		return bikeRepo.findByRydersNotContains(ryder);
 	}
-	public Bike findById(Long id) {
-		Optional<Bike> optionalBike = bikeRepo.findById(id);
-		if(optionalBike.isPresent()) {
-			return optionalBike.get();
-		}else {
-			return null;
-		}
+	
+//	Delete
+	public void destroyBike(Long id) {
+		bikeRepo.deleteById(id);
 	}
+	
+//	Check DB for existing Bikes
 	public boolean doesBikeExist(Bike bike) {
 		if (bikeRepo.existsBikeByModel(bike.getModel())) {
-			System.out.println("b");
 			List<Bike> existingBikes = bikeRepo.findAllByModel(bike.getModel());
 			for (Bike thisBike : existingBikes) {
 				if (thisBike.getYear() == bike.getYear() && thisBike.getSize() == bike.getSize()) return true;				
@@ -53,13 +53,4 @@ public class BikeService {
 		}
 		return false;
 	}
-	
-	
-	
-//	Delete
-	public void destroyBike(Long id) {
-		bikeRepo.deleteById(id);
-	}
-	
-	
 }

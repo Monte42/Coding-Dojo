@@ -17,15 +17,18 @@
 <body>
 
     <div class="container">
-		<h1>New Bike</h1>
+    	<div class="flex-wrapper flex-between-justify flex-center-align">
+			<h1>New Bike</h1>
+			<a href="/ryders">Home</a>
+    	</div>
 		<br><br>
 		
 		<form:form action="/bikes/new" method="POST" modelAttribute="bike">
 			<p>
 				<form:label path="year">Year: </form:label>
 				<form:input type="number" path="year" value="1885"/>
-				<form:errors class="error" path="year"/>
 			</p>
+			<form:errors class="error" path="year"/>
 			<p>
 				<form:label path="make">Make: </form:label>
 				<form:select path="make">
@@ -38,13 +41,13 @@
 			<p>
 				<form:label path="model">Model: </form:label>
 				<form:input path="model" placeholder="ZX-6R"/>
-				<form:errors class="error" path="model"/>
 			</p>
+			<form:errors class="error" path="model"/>
 			<p>
 				<form:label path="size">Engine Size: </form:label>
 				<form:input type="number" path="size" value="49"/>
-				<form:errors class="error" path="size"/>
 			</p>
+			<form:errors class="error" path="size"/>
 			<input type="submit" value="Submit">
 		</form:form>
     </div>

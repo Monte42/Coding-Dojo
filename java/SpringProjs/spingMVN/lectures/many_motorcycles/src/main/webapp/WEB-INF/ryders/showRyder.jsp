@@ -17,7 +17,10 @@
 <body>
 
     <div class="container">
+    	<div class="flex-wrapper flex-between-justify flex-center-align">
 		<h1><c:out value="${ryder.username}"/></h1>
+			<a href="/ryders">Home</a>
+    	</div>
 		<br><hr><br>
 		<h3>Email: <c:out value="${ryder.email}"/></h3>
 		<h3>Date Joined: <c:out value="${ryder.createdAt}"/></h3>

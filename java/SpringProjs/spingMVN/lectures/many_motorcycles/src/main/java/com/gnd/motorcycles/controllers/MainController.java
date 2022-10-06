@@ -20,6 +20,7 @@ public class MainController {
 	@Autowired
 	RyderService ryderServe;
 	
+//	LOGIN / REGISTER PAGE
 	@GetMapping("")
 	public String index(Model model, HttpSession session) {
 		if (session.getAttribute("userId")!=null) return "redirect:/ryders";
@@ -29,11 +30,10 @@ public class MainController {
 	}
 	
 	
+//	CREATE
 	@PostMapping("register")
-	public String register(
-						@Valid @ModelAttribute("newRyder") Ryder newRyder,
-						BindingResult result, HttpSession session,
-						Model model
+	public String register(@Valid @ModelAttribute("newRyder") Ryder newRyder,
+						BindingResult result, HttpSession session,Model model
 					) {
 		Ryder ryder = ryderServe.register(newRyder, result);
 		if (result.hasErrors()) {
@@ -46,14 +46,14 @@ public class MainController {
 	}
 	
 	
+//	LOGIN
 	@PostMapping("login")
-	public String login(
-					@Valid @ModelAttribute("newLogin") LoginRyder newLogin,
+	public String login(@Valid @ModelAttribute("newLogin") LoginRyder newLogin,
 					BindingResult result, HttpSession session, Model model
 				) {
 		if (ryderServe.login(newLogin)) result.rejectValue("email", "Invalid", "Invalid username or password");
 		if (result.hasErrors()) {
-			model.addAttribute("newUser", new Ryder());
+			model.addAttribute("newRyder", new Ryder());
 			return "index.jsp";
 		}
 		session.setAttribute("userId", ryderServe.ryderByEmail(newLogin.getEmail()).getId());
@@ -62,6 +62,7 @@ public class MainController {
 	}
 	
 	
+//	LOGOUT
 	@GetMapping("/logout")
 	public String logout(HttpSession session, Model model) {
 		session.removeAttribute("username");

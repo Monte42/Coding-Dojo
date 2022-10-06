@@ -31,6 +31,7 @@ public class RyderController {
 	BikeService bikeServe;
 	
 	
+//	HOME PAGE
 	@GetMapping("")
 	public String home(Model model, HttpSession session) {
 		if (session.getAttribute("userId")==null) return "index.jsp";
@@ -39,6 +40,7 @@ public class RyderController {
 		return "ryders/home.jsp";
 	}
 	
+//	CREATE MANY TO MANY RELATIONS
 	@GetMapping("my_garage")
 	public String myGarage(Model model, HttpSession session) {
 		if (session.getAttribute("userId")==null) return "index.jsp";
@@ -48,7 +50,6 @@ public class RyderController {
 		model.addAttribute("ryder", ryder);
 		return "ryders/myGarage.jsp";
 	}
-	
 	@PostMapping("add_bike")
 	public String addBikeToGarage(HttpSession session, Model model,
 								@RequestParam("bikeId") Long id
@@ -64,6 +65,8 @@ public class RyderController {
 		return "redirect:/ryders/my_garage";
 	}
 	
+	
+//	READ
 	@GetMapping("{id}")
 	public String showRyder(HttpSession session,Model model,@PathVariable("id") Long id) {
 		if (session.getAttribute("userId")==null) return "index.jsp";
@@ -72,6 +75,7 @@ public class RyderController {
 	}
 	
 	
+//	UPDATE
 	@GetMapping("edit/{id}")
 	public String editRyder(Model model,HttpSession session,
 							@PathVariable("id") Long id) {
@@ -79,7 +83,6 @@ public class RyderController {
 		if (!session.getAttribute("userId").equals(id)) return "redirect:/ryders";
 		return "ryders/editRyder.jsp";
 	}
-	
 	@PutMapping("edit/{id}")
 	public String updateRyder(@Valid @ModelAttribute("ryder") UpdateRyder ryder,
 						BindingResult result, @PathVariable("id") Long id, HttpSession session) {
@@ -93,6 +96,8 @@ public class RyderController {
 		return "redirect:/ryders/"+id;
 	}
 	
+	
+//	DELETE
 	@DeleteMapping("delete/{id}")
 	public String deleteUser(@PathVariable("id") Long id, HttpSession session) {
 		if (!session.getAttribute("userId").equals(id)) return "redirect:/ryders";

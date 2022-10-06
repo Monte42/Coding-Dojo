@@ -20,15 +20,11 @@ public interface RyderRepository extends CrudRepository<Ryder, Long>{
 	List<Ryder> findAll();
 	
 //	For Many to Many
-	Ryder findByIdIs(Long id);
-	
 	List<Ryder> findAllByBikes(Bike bike);
 	List<Ryder> findByBikesNotContains(Bike bike);
 	
 //	Rider for Login
 	Optional<Ryder> findByEmail(String email);
-	boolean existsRyderByEmail(String email);
-	boolean existsRyderByUsername(String username);
 	
 //	Rider Update
 	@Transactional
@@ -40,5 +36,8 @@ public interface RyderRepository extends CrudRepository<Ryder, Long>{
 	@Query("update Ryder r set r.email = :email where r.id = :id")
 	int updateRyderSetEmailById(@Param("email") String email, @Param("id") Long id);
 
+//	Check DB for existing Ryders
+	boolean existsRyderByEmail(String email);
+	boolean existsRyderByUsername(String username);
 	
 }

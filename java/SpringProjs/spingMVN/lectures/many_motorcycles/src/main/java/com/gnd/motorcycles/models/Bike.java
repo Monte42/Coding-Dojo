@@ -54,8 +54,10 @@ public class Bike {
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
+	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
+	
 	@PrePersist
 	public void onCreate() {
 		this.createdAt = new Date();
@@ -134,7 +136,5 @@ public class Bike {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
-	
 
 }

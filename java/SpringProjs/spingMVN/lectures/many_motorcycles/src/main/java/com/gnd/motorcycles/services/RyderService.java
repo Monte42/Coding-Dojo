@@ -49,6 +49,9 @@ public class RyderService {
 	public Ryder ryderByEmail(String email) {		
 		return ryderRepo.findByEmail(email).orElse(null);
 	}
+	public Ryder findById(Long id) {
+		return ryderRepo.findById(id).orElse(null);
+	}
 	
 	// For Many to Many
 	public List<Ryder> getAssignedRyders(Bike bike){
@@ -57,16 +60,7 @@ public class RyderService {
 	public List<Ryder> getUnassignedRyders(Bike bike){
 		return ryderRepo.findByBikesNotContains(bike);
 	}
-	public Ryder findById(Long id) {
-		Optional<Ryder> optionalRyder = ryderRepo.findById(id);
-		if(optionalRyder.isPresent()) {
-			return optionalRyder.get();
-		}else {
-			return null;
-		}
-	}
 
-	
 //	UPDATE
 	public Ryder saveRyder(Ryder ryder) {
 		return ryderRepo.save(ryder);
@@ -74,8 +68,7 @@ public class RyderService {
 	public int updateRyder(UpdateRyder ryder) {
 		ryderRepo.updateRyderSetUsernameById(ryder.getUsername(), ryder.getId());
 		return ryderRepo.updateRyderSetEmailById(ryder.getEmail(), ryder.getId());
-	}
-	
+	}	
 	
 //	DELETE
 	public void destroyRyder(Long id) {

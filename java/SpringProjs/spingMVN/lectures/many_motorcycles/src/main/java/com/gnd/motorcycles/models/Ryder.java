@@ -41,6 +41,7 @@ public class Ryder {
 	@NotBlank(message="Password can not be empty")
 	@Size(min=8, max=255, message="Password must at least 8 characters")
 	private String password;
+	
 	@Transient
 	@NotBlank(message="Confirm can not be empty")
 	@Size(min=8, max=255, message="Confirm password must at least 8 characters")
@@ -57,8 +58,10 @@ public class Ryder {
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
+	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
+	
 	@PrePersist
 	public void onCreate() {
 		this.createdAt = new Date();
@@ -139,10 +142,5 @@ public class Ryder {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
-	
-	
-	
-	
-	
+
 }

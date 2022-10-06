@@ -17,7 +17,10 @@
 <body>
 
     <div class="container">
-		<h1>Edit Ryder</h1>
+    	<div class="flex-wrapper flex-between-justify flex-center-align">
+			<h1>Edit Ryder</h1>
+			<a href="/ryders">Home</a>
+    	</div>
 		<form:form action="/ryders/edit/${ryder.id}" method="POST" modelAttribute="ryder">
 			<input type="hidden" name="_method" value="put">
 			<p>

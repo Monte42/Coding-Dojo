@@ -18,8 +18,7 @@ public class BrandService {
 	public Brand saveBrand(Brand brand) {
 		return brandRepo.save(brand);
 	}
-	
-	
+
 //	Read
 	public List<Brand> allBrands() {
 		return brandRepo.findAll();
@@ -31,11 +30,9 @@ public class BrandService {
 		return brandRepo.findByName(name).orElse(null);
 	}
 	
-	
 //	Delete
 	public void destroyBrand(Long id) {
 		brandRepo.deleteById(id);
 	}
-	
 	
 }

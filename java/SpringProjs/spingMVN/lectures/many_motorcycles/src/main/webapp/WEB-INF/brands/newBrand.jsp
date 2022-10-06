@@ -17,7 +17,10 @@
 <body>
 
     <div class="container">
-		<h1>Add A New Brand</h1>
+    	<div class="flex-wrapper flex-between-justify flex-center-align">
+			<h1>Add A New Brand</h1>
+			<a href="/ryders">Home</a>
+    	</div>
 		<br><br>
 		
 		<form:form action="/brands/new" method="POST" modelAttribute="newBrand">
