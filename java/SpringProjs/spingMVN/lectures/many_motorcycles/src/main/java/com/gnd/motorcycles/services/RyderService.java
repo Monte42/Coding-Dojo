@@ -49,9 +49,6 @@ public class RyderService {
 	public Ryder ryderByEmail(String email) {		
 		return ryderRepo.findByEmail(email).orElse(null);
 	}
-	public Ryder findById(Long id) {
-		return ryderRepo.findById(id).orElse(null);
-	}
 	
 	// For Many to Many
 	public List<Ryder> getAssignedRyders(Bike bike){

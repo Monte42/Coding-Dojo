@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title><c:out value="${ryder.username}"/></title>
+        <title>Show User</title>
         <!-- for Bootstrap CSS -->
 		<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" /> 
 		<script src="/webjars/jquery/jquery.min.js"></script> 
@@ -17,37 +17,24 @@
 <body>
 
     <div class="container">
-    	<div class="flex-wrapper flex-between-justify flex-center-align">
-		<h1><c:out value="${ryder.username}"/></h1>
-			<a href="/ryders">Home</a>
-    	</div>
+		<h1><c:out value="${user.username}"></c:out></h1>
+		
 		<br><hr><br>
-		<h3>Email: <c:out value="${ryder.email}"/></h3>
-		<h3>Date Joined: <c:out value="${ryder.createdAt}"/></h3>
+		<h3>Name: <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></h3>
+		<h3>Email: <c:out value="${user.email}"/></h3>
+		<h3>Date Joined: <c:out value="${user.createdAt}"/></h3>
 		<br><br>
-		<h2><c:out value="${ryder.username}"/>'s Garage</h2>
-		<table>
-			<c:forEach var="bike" items="${ryder.bikes}">
-				<tr>
-					<td><c:out value="${bike.year}"/>
-					<td><c:out value="${bike.make.name}"/>
-					<td><c:out value="${bike.model}"/>
-				</tr>
-			</c:forEach>
-		</table>
-		<br>
 
-		<c:if test="${userId==ryder.id}">
+		<c:if test="${userId==user.id}">
 			<div class="flex-wrapper flex-gap">
-				<button><a href="/ryders/edit/${ryder.id}">Edit</a></button>
+				<button><a href="/users/edit/${user.id}">Edit</a></button>
 				<span>|</span>
-				<form:form action="/ryders/delete/${ryder.id}" method="POST">
+				<form:form action="/users/delete/${user.id}" method="POST">
 					<input type="hidden" name="_method" value="delete">
 					<input type="submit" value="Delete">
 				</form:form>
 			</div>
 		</c:if>
-
     </div>
     
     <!-- <script type="text/javascript" src="js/script.js"></script> -->

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +41,11 @@ public class BrandController {
 	}
 	
 	
+//  ==========================
+//	From here down are used
+//	These are just for show
+//  ==========================
+
 //	Edit
 	@GetMapping("edit/{id}")
 	public String editBrand(Model model, @PathVariable("id") Long id) {
@@ -52,5 +58,10 @@ public class BrandController {
 		return "redirect:/ryders";
 	}
 	
-	
+//	DELETE
+	@DeleteMapping("delete/{id}")
+	public String deleteBike(@PathVariable("id") Long id) {
+		brandServe.destroyBrand(id);
+		return "redirect:/ryders";
+	}
 }
