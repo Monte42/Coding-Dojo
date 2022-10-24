@@ -1,0 +1,11 @@
+INDEX VERSION 1.131+S:\Coding_Dojo\java\SpringProjs\spingMVN\Extra\.metadata\.plugins\org.eclipse.jdt.core
+3024794162.index
+3227784583.index
+4279114570.index
+3978588871.index
+3656768394.index
+1865797976.index
+3491190317.index
+679392859.index
+4284267907.index
+1387460289.index

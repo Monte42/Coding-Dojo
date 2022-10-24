@@ -1,0 +1,5 @@
+INDEX VERSION 1.131
+S:\Coding_Dojo\java\SpringProjs\spingMVN\Extra\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2654284570.index
+\java_auth\src\main\java
+S:\Coding_Dojo\java\SpringProjs\spingMVN\Extra\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1344348745.index
+\motocycles\src\main\java

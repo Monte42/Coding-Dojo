@@ -1,0 +1,5 @@
+package com.gnd.spring.auth.services;
+
+public class UserDetailsServiceImplementation {
+
+}

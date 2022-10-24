@@ -1,0 +1,5 @@
+package com.gnd.spring.auth.models;
+
+public class Role {
+
+}
