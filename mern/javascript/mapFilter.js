@@ -47,3 +47,4 @@ const pokémon = Object.freeze([
 
     const numberOfNormalPokemon = pokémon.filter(p => p.types.includes("normal")).length
     // console.log(numberOfNormalPokemon);
+    
