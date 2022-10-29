@@ -1,4 +1,5 @@
 import './App.css';
+import UserForm from './components/UserForm';
 import PersonCard from './components/PersonCard';
 
 // rafce creates boiler 
@@ -22,6 +23,7 @@ function App() {
       {
         pdata.map( p => <PersonCard firstName={p.firstName} lastName={p.lastName} age={p.age} hairColor={p.hairColor} /> )
       }
+      <UserForm/>
     </div>
   );
 }
