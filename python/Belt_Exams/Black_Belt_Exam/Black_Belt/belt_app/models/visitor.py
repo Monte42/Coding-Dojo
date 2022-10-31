@@ -84,8 +84,8 @@ class Visitor:
 
 
     @staticmethod
-    def did_user_visit_tree_already(id):
-        this_tree_visitors = Visitor.fecth_visitors_by_tree_id(id)
+    def did_user_visit_tree_already(cls, id):
+        this_tree_visitors = cls.fecth_visitors_by_tree_id(id)
         for visitor in this_tree_visitors:
             if visitor.user.id == session['user_id']:
                 return True
