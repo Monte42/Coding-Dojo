@@ -1,7 +1,11 @@
 import './App.css';
+import Groceries from './components/Groceries';
 import MyHeaderComp from './components/MyHeaderComp';
 
 function App() {
+
+
+
   return (
     <div className="App">
       {/* "header" is just how we pass value to ours props obj */}
@@ -17,6 +21,9 @@ function App() {
       {/* components as 'props.children'.  This we render all the children on the page.   */}
       {/* The children property is an array and can be indexed like any array.  So we can */}
       {/* specific cheldren to choosen locations. */}
+
+
+      <Groceries/>
     </div>
   );
 }

@@ -1,3 +1,10 @@
+/* ======== */
+/*  RULES  */
+/* ======= */
+/* Names must be camelCased => no "-" */
+/* filename must end with "module.css" */
+
+
 .headerStyle {
     color:red;
     border: 2px solid red;
