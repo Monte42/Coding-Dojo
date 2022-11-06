@@ -5,13 +5,9 @@ import BoxDisplay from './boxComponents/BoxDisplay';
 
 function App() {
   const [allBoxes, setAllBoxes] = useState([{color:"red",size:2}])
-  const [numOfBoxes, setNumOfBoxes] = useState(1)
 
   const createBox = (color, size) =>{
-    let newBoxSet = allBoxes
-    newBoxSet.push({color:color,size:size})
-    setAllBoxes(newBoxSet)
-    setNumOfBoxes(numOfBoxes+1)
+    setAllBoxes([...allBoxes, {color:color, size:size}])
   }
   return (
     <div className="App">

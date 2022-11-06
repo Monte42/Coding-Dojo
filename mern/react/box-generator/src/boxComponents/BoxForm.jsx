@@ -3,14 +3,12 @@ import styles from '../static/css/master.module.css'
 
 const BoxForm = (props) => {
 
-    const [color,setColor] = useState("")
+    const [color,setColor] = useState("red")
     const [size,setSize] = useState(1)
 
     const handleFormSubmit = (e) =>{
         e.preventDefault()
         props.onNewBox(color,size)
-        setColor("")
-        setSize(1)
     }
 
     return (
