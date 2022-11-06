@@ -1,0 +1,17 @@
+.flexWrapper{
+    display: flex;
+}
+.flexCol8{
+    flex-grow: 8;
+}
+.flexCol4{
+    flex-grow: 4;
+}
+.flexGap{
+    gap: 20px;
+}
+.borderShadow{
+    border: 2px solid black;
+    border-radius: 5%;
+    box-shadow: 5px 5px 5px darkgray;
+}

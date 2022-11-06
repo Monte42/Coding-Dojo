@@ -1,11 +1,9 @@
 import './App.css';
 import Groceries from './components/Groceries';
+import MessageComponent from './components/MessageComponent';
 import MyHeaderComp from './components/MyHeaderComp';
 
 function App() {
-
-
-
   return (
     <div className="App">
       {/* "header" is just how we pass value to ours props obj */}
@@ -24,6 +22,11 @@ function App() {
 
 
       <Groceries/>
+      <br/><br/><hr/><br/><br/>
+
+      <MessageComponent />
+      <br/><br/><hr/><br/><br/>
+
     </div>
   );
 }
