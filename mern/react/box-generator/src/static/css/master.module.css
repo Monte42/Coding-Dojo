@@ -1,0 +1,17 @@
+.txtCenter{
+    text-align: center;
+}
+.sizeLG{
+    font-size: 2em;
+}
+.pad20{
+    padding: 20px;
+}
+
+.displayWindow{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 40px;
+    width: 75%;
+    margin: 20px auto;
+}
