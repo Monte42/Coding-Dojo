@@ -1,0 +1,34 @@
+.tabBar{
+    display: flex;
+    padding: 40px 40px 8px;
+    gap: 10px;
+}
+.tab{
+    border: 1px solid black;
+    padding: 5px 25px;
+    font-size: 1.5em;
+}
+.selected{
+    background-color: #1a1a1a;
+    color: white;
+}
+.displayWindow{
+    border: 1px solid black;
+    box-shadow: -1px -1px 5px black;
+    padding: 10px;
+    width: 70%;
+    height: 300px;
+    overflow: auto;
+    margin: 0 20px;
+    background-color: #1a1a1a;
+}
+p{
+    font-size: 1.2em;
+    text-align: center;
+    font-weight: 600;
+    background-color: #5a5a5a;
+    color: #ddd;
+}
+p:nth-of-type(2n){
+    background-color: #3a3a3a;
+}
