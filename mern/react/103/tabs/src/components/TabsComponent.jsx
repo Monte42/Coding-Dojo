@@ -14,12 +14,12 @@ const TabsComponent = (props) => {
     }
 
     return (
-        <div>
+        <>
             <div className={styles.tabBar}>
                 {
                     contentArr.map( (tab,i) => {
                         if (i<contentArr.length-1){
-                            return <div onClick={(e)=>handleTabChange(e,i)}><Tab key={i} title={tab.title}/></div>
+                            return <div><Tab key={i} i={i} title={tab.title} handleChange={handleTabChange}/></div>
                         }
                         return true
                     })
@@ -30,7 +30,7 @@ const TabsComponent = (props) => {
                     contentArr[currentTab].content.map((item,i) => <p key={i}>{item}</p>)
                 }
             </div>
-        </div>
+        </>
     )
 }
 
