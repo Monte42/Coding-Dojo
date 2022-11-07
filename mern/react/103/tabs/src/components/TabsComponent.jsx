@@ -8,7 +8,7 @@ const TabsComponent = (props) => {
 
     const handleTabChange = (e,index) => {
         const el = document.getElementsByClassName("master_selected__rcm2E")
-        if (el.length!=0) el[0].classList.remove("master_selected__rcm2E");
+        if (el.length!==0) el[0].classList.remove("master_selected__rcm2E");
         e.target.parentElement.classList.add("master_selected__rcm2E");
         setCurrentTab(index)
     }
@@ -21,6 +21,7 @@ const TabsComponent = (props) => {
                         if (i<contentArr.length-1){
                             return <div onClick={(e)=>handleTabChange(e,i)}><Tab key={i} title={tab.title}/></div>
                         }
+                        return true
                     })
                 }
             </div>

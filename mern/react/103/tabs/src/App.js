@@ -1,8 +1,4 @@
 import './App.css';
-import ContentDisplay from './components/ContentDisplay';
-import { Tab } from './components/Tab';
-import styles from './master.module.css'
-import {useState} from 'react'
 import TabsComponent from './components/TabsComponent';
 
 function App() {
