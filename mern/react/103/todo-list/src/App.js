@@ -1,5 +1,5 @@
 import './App.css';
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import TodoEntry from './components/TodoEntry';
 import TodoList from './components/TodoList';
 
@@ -10,6 +10,15 @@ function App() {
     {task:"buy groceries", completed:true},
     {task:"clean House", completed:false}
   ])
+
+  useEffect(() => {
+    const data = localStorage.getItem("my-todos")
+    if (data) setTasks(JSON.parse(data));
+  }, [])
+  
+  useEffect(() => {
+    localStorage.setItem("my-todos", JSON.stringify(tasks))
+  })
 
 
   // FUNCTIONS TO PASSDOWN
