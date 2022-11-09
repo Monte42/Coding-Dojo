@@ -33,9 +33,9 @@ const TodoList = ({tasks,setTasks}) => {
 
     // JSX
     return (
-        <div className='border border-secondary p-2 mb-2 border-opacity-50' style={{width:"50%", margin:"10px auto", maxHeight:"700px", overflow:"auto"}}>
+        <div className='border border-secondary p-2 mb-2 border-opacity-50' style={{fontSize:"1.5em", width:"50%", margin:"10px auto", maxHeight:"700px", overflow:"auto"}}>
             {
-                editError ? <p>{editError}</p> : ""
+                editError ? <p style={{textAlign:"center", color:"red"}}>{editError}</p> : ""
             }
             {
                 tasks.map((todo, i) =>
@@ -43,8 +43,8 @@ const TodoList = ({tasks,setTasks}) => {
                         <div className="row" style={{width:"90%", margin:" 5px auto", padding:"10px 30px", borderBottom:"1px solid black"}}>
                             {
                                 todo.completed ?
-                                <p className='col-8' style={{fontSize:"1.5em", textDecoration:"line-through"}}>{todo.task}</p> :
-                                <p className='col-8' style={{fontSize:"1.5em"}}>{todo.task}</p> 
+                                <p className='col-8' style={{textDecoration:"line-through"}}>{todo.task}</p> :
+                                <p className='col-8'>{todo.task}</p> 
                             }
                             <form className='col-1'>
                                 <input type="checkbox" checked={todo.completed} onChange={() => handleCompletion(i)}/>
