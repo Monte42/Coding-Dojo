@@ -51,26 +51,34 @@
 // console.log(twoSum(nums4,target4));
 
 
-const searchArr = (arr,trgt) => {
-    let start = 0
-    let end = arr.length-1
-    if (arr.indexOf(trgt)==-1) return -1;
-    while(start<=end){
-        let mid = arr[Math.floor((start+end)/2)]
-        if(mid===trgt) return arr.indexOf(mid)
-        if(start===trgt) return arr.indexOf(start)
-        if(end===trgt) return arr.indexOf(end)
-        mid > trgt ? end=mid-1 : start=mid+1
+// const searchArr = (arr,trgt) => {
+//     let start = 0
+//     let end = arr.length-1
+//     if (arr.indexOf(trgt)==-1) return -1;
+//     while(start<=end){
+//         let mid = arr[Math.floor((start+end)/2)]
+//         if(mid===trgt) return arr.indexOf(mid)          
+//         if(start===trgt) return arr.indexOf(start)     Need to arr[start]
+//         if(end===trgt) return arr.indexOf(end)
+//         mid > trgt ? end=mid-1 : start=mid+1
+//     }
+//     return -1
+// }
+
+const arr1 = [1,12,-5,-6,50,3]
+
+
+const findMaxAvg = (nums, k) => {
+    let endPoint = k
+    let maxAvg = -Infinity
+    while (endPoint<=nums.length){
+        const currentAvg = nums.slice((endPoint-k), endPoint).reduce((a,b) => a+b,0)/k;
+        maxAvg = Math.max(maxAvg, currentAvg)
+        endPoint++
     }
-    return -1
+
+    return maxAvg;
 }
 
-console.log(searchArr([1,2,3,4,5,6,7,8,9],6));
-console.log(searchArr([1,2,3,4,5,6,7,8,9],3));
-console.log(searchArr([1,2,3,4,5,6,7,8,9],8));
-console.log(searchArr([1,2,3,4,5,6,7,8,9],5));
-console.log(searchArr([1,2,3,4,5,6,7,8,9],11));
-console.log(searchArr([1,3,33,44,57,61,72,88,90],57));
-console.log(searchArr([-21,22,33,44,55,66,67,78,79],22));
-console.log(searchArr([-111,-92,-3,4,25,46,57,68,79],-3));
-
+console.log(findMaxAvg(arr1, 4))
+console.log(findMaxAvg([5], 1))
