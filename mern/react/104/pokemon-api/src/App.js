@@ -6,13 +6,16 @@ function App() {
   const [pokemonList,setPokemonList] = useState([])
   
   useEffect(() => {
+    // POKEMON API PRACTICE
     // fetch("https://pokeapi.co/api/v2/pokemon?limit=807&offset=0")
     //   .then(res => res.json())
     //   .then(response => setPokemonList(response.results))
+    
+    // AXIOUS POKEMON API
     axios.get("https://pokeapi.co/api/v2/pokemon?limit=807&offset=0")
-      .then(respone => setPokemonList(respone.data.results))
+    .then(respone => setPokemonList(respone.data.results))
   },[])
-
+  
   return (
     <div className="App">
       <h1>Fetch Pokemon</h1>
