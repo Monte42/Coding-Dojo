@@ -12,9 +12,9 @@ function App() {
   function fiveHeads() {
     let headCount = 0
     let attempts = 0
-    let max = 100
+    let max = 100000000
     return new Promise((resolve, reject) => {
-      while(headCount<5){
+      while(headCount<25){
         let val = tossCoin()
         attempts++
         if(val === "heads") {
@@ -24,8 +24,7 @@ function App() {
         }
       }
       if (attempts <= max) {
-        
-        resolve(`It took ${attempts} to get 20 heads in a row`)
+        resolve(`It took ${attempts} to get 25 heads in a row`)
       } else {
         reject(`Max(${max}) Attempts Exceeded`)
       }
@@ -34,8 +33,9 @@ function App() {
 
   const handleRequest = () => {
     fiveHeads()
-      .then(res => setMsg(res))
-      .catch(err => setMsg(err));
+      .then(res => {console.log(res); setMsg(res)})
+      .catch(err => {console.log(err); setMsg(err)});
+    console.log("Loading...");
   }
 
   return (
@@ -43,7 +43,7 @@ function App() {
       <h1>Hi</h1>
       <button onClick={handleRequest}>Click Me</button>
       {
-        msg ? <p>{msg}</p> : ""
+        msg ? <p>{msg}</p> : <p>Click Button</p>
       }
     </div>
   );
