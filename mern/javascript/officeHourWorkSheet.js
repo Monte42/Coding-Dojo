@@ -65,20 +65,37 @@
 //     return -1
 // }
 
-const arr1 = [1,12,-5,-6,50,3]
+// const arr1 = [1,12,-5,-6,50,3]
 
 
-const findMaxAvg = (nums, k) => {
-    let endPoint = k
-    let maxAvg = -Infinity
-    while (endPoint<=nums.length){
-        const currentAvg = nums.slice((endPoint-k), endPoint).reduce((a,b) => a+b,0)/k;
-        maxAvg = Math.max(maxAvg, currentAvg)
-        endPoint++
+// const findMaxAvg = (nums, k) => {
+//     let endPoint = k
+//     let maxAvg = -Infinity
+//     while (endPoint<=nums.length){
+//         const currentAvg = nums.slice((endPoint-k), endPoint).reduce((a,b) => a+b,0)/k;
+//         maxAvg = Math.max(maxAvg, currentAvg)
+//         endPoint++
+//     }
+
+//     return maxAvg;
+// }
+
+// console.log(findMaxAvg(arr1, 4))
+// console.log(findMaxAvg([5], 1))
+
+arr1 = [1,8,6,2,5,4,8,3,7]
+
+var maxArea = function(height){
+    let start = 0
+    let end = height.length-1
+    let max = 0
+    while(start<end){
+        let width = end-start
+        let h = Math.min(height[start], height[end])
+        max = Math.max(max, (h*width))
+        height[start] > height[end] ? end-- : start++
     }
-
-    return maxAvg;
+    return max
 }
 
-console.log(findMaxAvg(arr1, 4))
-console.log(findMaxAvg([5], 1))
+console.log(maxArea(arr1))

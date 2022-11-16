@@ -3,22 +3,18 @@ import {useState, useEffect} from 'react'
 import TodoEntry from './components/TodoEntry';
 import TodoList from './components/TodoList';
 
+const dataFromStorage = JSON.parse(localStorage.getItem("tasks") || '[]')
+
 function App() {
   // SETTING STATE
-  const [tasks, setTasks] = useState([
-    {task:"learn Mern", completed:false},
-    {task:"buy groceries", completed:true},
-    {task:"clean House", completed:false}
-  ])
+  const [tasks, setTasks] = useState(dataFromStorage)
 
-  useEffect(() => {
-    const data = localStorage.getItem("my-todos")
-    if (data) setTasks(JSON.parse(data));
-  }, [])
+  
   
   useEffect(() => {
-    localStorage.setItem("my-todos", JSON.stringify(tasks))
-  })
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+    console.log("StateChange...\n",localStorage.getItem("tasks"));
+  },[tasks])
 
   // JSX
   return (
