@@ -83,19 +83,41 @@
 // console.log(findMaxAvg(arr1, 4))
 // console.log(findMaxAvg([5], 1))
 
-arr1 = [1,8,6,2,5,4,8,3,7]
 
-var maxArea = function(height){
-    let start = 0
-    let end = height.length-1
-    let max = 0
-    while(start<end){
-        let width = end-start
-        let h = Math.min(height[start], height[end])
-        max = Math.max(max, (h*width))
-        height[start] > height[end] ? end-- : start++
+// var maxArea = function(height){
+    //     let start = 0
+    //     let end = height.length-1
+    //     let max = 0
+    //     while(start<end){
+        //         let width = end-start
+        //         let h = Math.min(height[start], height[end])
+        //         max = Math.max(max, (h*width))
+        //         height[start] > height[end] ? end-- : start++
+        //     }
+        //     return max
+        // }
+        
+        // console.log(maxArea(arr1))
+        
+arr1 = [1,8,6,2,5,4,8,3,7]
+arr2 = [1,5,3]
+
+const rotate = (nums,k) =>{
+    if (nums.length<k) {
+        let a = k%nums.length
+        console.log(a);
+        nums.unshift(...nums.splice(-a))
+    } else if (nums.length>k) {
+        nums.unshift(...nums.splice(-k));
     }
-    return max
+    return nums
 }
 
-console.log(maxArea(arr1))
+
+console.log(4%3);
+console.log(arr2);
+arr2 = rotate(arr2,4)
+console.log(arr2);
+// console.log(arr1);
+// arr1 = rotate(arr1,3)
+// console.log(arr1);
