@@ -99,25 +99,47 @@
         
         // console.log(maxArea(arr1))
         
-arr1 = [1,8,6,2,5,4,8,3,7]
-arr2 = [1,5,3]
+// arr1 = [1,8,6,2,5,4,8,3,7]
+// arr2 = [1,5,3]
 
-const rotate = (nums,k) =>{
-    if (nums.length<k) {
-        let a = k%nums.length
-        console.log(a);
-        nums.unshift(...nums.splice(-a))
-    } else if (nums.length>k) {
-        nums.unshift(...nums.splice(-k));
-    }
-    return nums
-}
+// const rotate = (nums,k) =>{
+//     if (nums.length<k) {
+//         let a = k%nums.length
+//         console.log(a);
+//         nums.unshift(...nums.splice(-a))
+//     } else if (nums.length>k) {
+//         nums.unshift(...nums.splice(-k));
+//     }
+//     return nums
+// }
 
 
-console.log(4%3);
-console.log(arr2);
-arr2 = rotate(arr2,4)
-console.log(arr2);
+// console.log(4%3);
+// console.log(arr2);
+// arr2 = rotate(arr2,4)
+// console.log(arr2);
 // console.log(arr1);
 // arr1 = rotate(arr1,3)
 // console.log(arr1);
+
+
+var lengthOfLongestSubstring = function(s) {
+    let subString = ""
+    let max = 0
+    if (s.trim().length === 0 && s.length>0)
+    for (let i=0;i<s.length; i++){
+        if(subString.includes(s[i])){
+            max = Math.max(max, subString.length)
+            subString = ""
+        }
+        subString+=s[i]
+        curr++
+    }
+    return max
+};
+
+console.log(lengthOfLongestSubstring(" "))
+console.log(lengthOfLongestSubstring(""))
+console.log(lengthOfLongestSubstring("au"))
+console.log(lengthOfLongestSubstring("hello"))
+console.log(lengthOfLongestSubstring("aaasddsfvbssadafgh"))
