@@ -1,7 +1,7 @@
 import './App.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import ProductsPage from './components/products/ProductsPage';
 import React,{ useState,useEffect } from 'react';
+import ProductsPage from './views/products/ProductsPage';
 import OneProduct from './components/products/OneProduct';
 
 export const AppContext = React.createContext()
