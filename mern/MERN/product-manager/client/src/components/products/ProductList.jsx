@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 
 const ProductList = ({products, setProducts}) => {
@@ -22,9 +23,7 @@ const ProductList = ({products, setProducts}) => {
                         return(
                             <section key={i}>
                                 <br/>
-                                <p><strong>{p.name}</strong></p>
-                                <p>{p.description}</p>
-                                <p>${p.price}</p>
+                                <p><strong>{p.name}</strong> | <Link to={`/products/${p._id}`}>View</Link></p>
                             </section>
                         )
                     })
