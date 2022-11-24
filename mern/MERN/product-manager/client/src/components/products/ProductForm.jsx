@@ -1,13 +1,14 @@
 import { useState } from "react";
 import axios from 'axios'
 
-const ProductForm = () => {
+const ProductForm = ({products,setProducts}) => {
     const [name, setName] = useState()
     const [description, setDescription] = useState()
     const [price, setPrice] = useState()
 
     const createUser = (e) =>{
         e.preventDefault()
+        setProducts([...products,{name,description,price}])
         axios.post("http://localhost:8000/api/products", {
             name,
             description,
