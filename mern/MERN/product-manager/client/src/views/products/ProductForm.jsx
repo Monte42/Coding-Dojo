@@ -2,9 +2,9 @@ import { useState } from "react";
 import axios from 'axios'
 
 const ProductForm = ({products,setProducts}) => {
-    const [name, setName] = useState()
-    const [description, setDescription] = useState()
-    const [price, setPrice] = useState()
+    const [name, setName] = useState("")
+    const [description, setDescription] = useState("")
+    const [price, setPrice] = useState(0)
 
     const createUser = (e) =>{
         e.preventDefault()
@@ -14,7 +14,6 @@ const ProductForm = ({products,setProducts}) => {
             description,
             price
         })
-            .then(res => console.log(res,res.data))
             .catch(err => console.log(err))
     }
 

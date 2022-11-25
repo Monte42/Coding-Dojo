@@ -4,7 +4,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 
-const ProductList = ({products, setProducts}) => {
+const ProductList = ({products, setProducts, removeProduct}) => {
 
     useEffect(() => {
         axios.get("http://localhost:8000/api/products")
@@ -13,6 +13,12 @@ const ProductList = ({products, setProducts}) => {
             })
     },[])
 
+    const handleDelete = (e,id) => {
+        e.preventDefault()
+        axios.delete("http://localhost:8000/api/products/"+id)
+        .then(res => removeProduct(id))
+        .catch(err => console.log(err))
+    }
 
     return (
         <div>
@@ -23,7 +29,17 @@ const ProductList = ({products, setProducts}) => {
                         return(
                             <section key={i}>
                                 <br/>
-                                <p><strong>{p.name}</strong> | <Link to={`/products/${p._id}`}>View</Link></p>
+                                <p><strong>{p.name}</strong></p>
+                                <p>
+                                    <Link to={`/products/${p._id}`}>View</Link> |
+                                    <Link to={`/products/edit/${p._id}`}>Edit</Link> |
+                                    <span 
+                                    onClick={e => handleDelete(e, p._id)}
+                                    style={{textDecoration:'underline', color:'blue'}}
+                                    >
+                                        Delete
+                                    </span> 
+                                </p>
                             </section>
                         )
                     })

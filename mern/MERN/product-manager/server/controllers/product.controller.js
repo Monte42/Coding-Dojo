@@ -26,3 +26,15 @@ module.exports.fetchProductsById = (req,res) => {
         .then(product => res.json(product))
         .catch(error => res.json({message:"***ERROR", error}))
 }
+
+module.exports.updateProduct = (req,res) => {
+    Product.updateOne({_id:req.params.id}, req.body, {new:true})
+        .then(results => res.json({results}))
+        .catch(error => res.json({message:"***ERROR", error}))
+    }
+    
+    module.exports.deleteProduct = (req,res) => {
+        Product.deleteOne({_id:req.params.id})
+        .then(results => res.json(results))
+        .catch(error => res.json({message:"***ERROR", error}))
+}
