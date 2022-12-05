@@ -123,23 +123,38 @@
 // console.log(arr1);
 
 
-var lengthOfLongestSubstring = function(s) {
-    let subString = ""
-    let max = 0
-    if (s.trim().length === 0 && s.length>0)
-    for (let i=0;i<s.length; i++){
-        if(subString.includes(s[i])){
-            max = Math.max(max, subString.length)
-            subString = ""
-        }
-        subString+=s[i]
-        curr++
+// var lengthOfLongestSubstring = function(s) {
+//     let subString = ""
+//     let max = 0
+//     if (s.trim().length === 0 && s.length>0)
+//     for (let i=0;i<s.length; i++){
+//         if(subString.includes(s[i])){
+//             max = Math.max(max, subString.length)
+//             subString = ""
+//         }
+//         subString+=s[i]
+//         curr++
+//     }
+//     return max
+// };
+
+// console.log(lengthOfLongestSubstring(" "))
+// console.log(lengthOfLongestSubstring(""))
+// console.log(lengthOfLongestSubstring("au"))
+// console.log(lengthOfLongestSubstring("hello"))
+// console.log(lengthOfLongestSubstring("aaasddsfvbssadafgh"))
+
+prices = [2,4,1]
+
+var maxProfit = function(prices) {
+    let min = prices[0]
+    let profit = 0
+    for (let i=0; i<prices.length; i++){
+        min = Math.min(prices[i], min)
+        profit = Math.max(profit, prices[i]-min)
     }
-    return max
+    return profit
 };
 
-console.log(lengthOfLongestSubstring(" "))
-console.log(lengthOfLongestSubstring(""))
-console.log(lengthOfLongestSubstring("au"))
-console.log(lengthOfLongestSubstring("hello"))
-console.log(lengthOfLongestSubstring("aaasddsfvbssadafgh"))
+console.log(maxProfit(prices));
+

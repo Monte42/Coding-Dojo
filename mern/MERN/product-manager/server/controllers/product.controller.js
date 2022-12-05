@@ -33,8 +33,8 @@ module.exports.updateProduct = (req,res) => {
         .catch(error => res.json({message:"***ERROR", error}))
     }
     
-    module.exports.deleteProduct = (req,res) => {
-        Product.deleteOne({_id:req.params.id})
-        .then(results => res.json(results))
-        .catch(error => res.json({message:"***ERROR", error}))
+module.exports.deleteProduct = (req,res) => {
+    Product.deleteOne({_id:req.params.id})
+    .then(results => res.json(results))
+    .catch(error => res.json({message:"***ERROR", error}))
 }
