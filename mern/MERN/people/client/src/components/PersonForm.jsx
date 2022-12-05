@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-const PersonForm = ({onSubmitProp,initFirstName,initLastName,initAge,initEmail}) => {
+const PersonForm = ({onSubmitProp,initFirstName,initLastName,initAge,initEmail,errors}) => {
     const [firstName, setFirstName] = useState(initFirstName)
     const [lastName, setLastName] = useState(initLastName)
     const [age, setAge] = useState(initAge)
@@ -9,10 +9,6 @@ const PersonForm = ({onSubmitProp,initFirstName,initLastName,initAge,initEmail})
     const onSubmitHandler = e => {
         e.preventDefault()
         onSubmitProp({firstName,lastName,age,email})
-        setFirstName("")
-        setLastName("")
-        setAge(0)
-        setEmail("")
     }
 
     return (
@@ -23,24 +19,48 @@ const PersonForm = ({onSubmitProp,initFirstName,initLastName,initAge,initEmail})
                     <label>
                         First Name:
                         <input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} />
+                        { errors.firstName ?
+                            <p style={{color:'red'}}>
+                                {errors.firstName.message}
+                            </p>
+                            : null
+                        }
                     </label>
                 </p>
                 <p>
                     <label>
                         Last Name:
                         <input type="text" value={lastName} onChange={e => setLastName(e.target.value)} />
+                        { errors.lastName ?
+                            <p style={{color:'red'}}>
+                                {errors.lastName.message}
+                            </p>
+                            : null
+                        }
                     </label>
                 </p>
                 <p>
                     <label>
                         Age:
                         <input type="number" value={age} onChange={e => setAge(e.target.value)} />
+                        { errors.age ?
+                            <p style={{color:'red'}}>
+                                {errors.age.message}
+                            </p>
+                            : null
+                        }
                     </label>
                 </p>
                 <p>
                     <label>
                         Email:
                         <input type="text" value={email} onChange={e => setEmail(e.target.value)} />
+                        { errors.email ?
+                            <p style={{color:'red'}}>
+                                {errors.email.message}
+                            </p>
+                            : null
+                        }
                     </label>
                 </p>
                 <input type="submit" value="Submit" />

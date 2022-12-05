@@ -5,6 +5,7 @@ import DisplayAll from "../components/DisplayAll"
 
 const Main = () => {
     const [personList, setPersonList] = useState([])
+    const [errors, setErrors] = useState({})
 
     useEffect(() => {
         axios.get("http://localhost:8000/api/people")
@@ -21,10 +22,12 @@ const Main = () => {
     const addPerson = personParam => {
         axios.post("http://localhost:8000/api/people/", personParam)
             .then(res => {
-                console.log(res.data);
+                setErrors({})
                 setPersonList([...personList, res.data])
             })
-            .catch(err => console.log(`error ${err}`))
+            .catch(err => {
+                setErrors(err.response.data.errors)
+            })
     }
 
     return (
@@ -34,7 +37,9 @@ const Main = () => {
                 initFirstName={""} 
                 initLastName={""} 
                 initAge={0} 
-                initEmail={""} 
+                initEmail={""}
+                errors={errors}
+                setErrors={setErrors}
             />
             <DisplayAll
                 removeFromDom={removeFromDom}
