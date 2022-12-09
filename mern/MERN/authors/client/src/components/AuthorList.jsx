@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import DeleteButton from './DeleteButton'
 
 const AuthorList = ({authorList, removeFromDom}) => {
     return (
@@ -17,9 +18,7 @@ const AuthorList = ({authorList, removeFromDom}) => {
                                 <button>
                                     <Link to={`/edit/${a._id}`}>Edit</Link>
                                 </button>
-                                <button onClick={e => removeFromDom(a._id)}>
-                                    Delete
-                                </button>
+                                <DeleteButton removeFromDom={removeFromDom} id={a._id}/>
                             </td>
                         </tr>
                     )

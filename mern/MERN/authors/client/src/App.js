@@ -10,7 +10,6 @@ import EditAuthor from './views/EditAuthor';
 
 function App() {
   const [authorList,setAuthorList] = useState([])
-  const [errors,setErrors] = useState({})
 
   useEffect(() => {
     axios.get("http://localhost:8000/api/authors")
@@ -20,14 +19,10 @@ function App() {
 
   const removeFromDom = authorId => {
     axios.delete("http://localhost:8000/api/authors/"+authorId)
-      .then( res => setAuthorList(authorList.filter(author => author._id !== authorId)))
+      .then( res => {
+        setAuthorList(authorList.filter(author => author._id !== authorId))
+      })
       .catch( e => console.log(e))
-  }
-
-  const addAuthor = authorParams => {
-    axios.post("http://localhost/api/authors", authorParams)
-      .then(res => setAuthorList([...authorList, res.data]))
-      .catch(err => setErrors(err.response.data.errors))
   }
 
   return (
@@ -36,8 +31,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<Home authorList={authorList} removeFromDom={removeFromDom} />} path="/" />
-          <Route element={<AddAuthor/>} path="/new" />
-          <Route element={<EditAuthor/>} path="/edit/:id" />
+          <Route element={<AddAuthor authorList={authorList} setAuthorList={setAuthorList}/>} path="/new" />
+          <Route element={<EditAuthor removeFromDom={removeFromDom} />} path="/edit/:id" />
         </Routes>
       </BrowserRouter>
       
