@@ -8,8 +8,6 @@ const ResolutionForm = ({submitProp,initName,initCat,initDesc,initRew,initLikes,
     const [reward2,setReward2] = useState(initRew[1])
     const [reward3,setReward3] = useState(initRew[2])
 
-    
-
     const handleSubmit = e => {
         e.preventDefault()
         submitProp({
