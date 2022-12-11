@@ -31,7 +31,6 @@ const PersonSchema = new mongoose.Schema({
         minLength: [3, "Email Must Be 3 Chars"],
         maxLength: [150, "Email Cant Exceed Chars"],
         unique: true
-        
     }
 })
 
