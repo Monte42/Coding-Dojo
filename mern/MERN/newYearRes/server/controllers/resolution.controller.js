@@ -1,7 +1,11 @@
 const Resolution = require('../models/resolution.model')
 
 module.exports.createResolution = (req,res) => {
-    Resolution.create(req.body)
+    Resolution.exists({name:req.body.name})
+        .then(resExists => {
+            if(resExists) return Promise.reject({errors:{name:{message:"This resolution already exists"}}})
+            Resolution.create(req.body)
+        })
         .then(newResolution => res.json(newResolution))
         .catch(e => res.status(400).json(e))
 }

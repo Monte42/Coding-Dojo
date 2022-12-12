@@ -1,9 +1,9 @@
 const Author = require("../models/author.model")
 
 module.exports.createAuthor = (req,res) => {
-    Author.exists({name:req.params.name})
+    Author.exists({name:req.body.name})
         .then(authorExists => {
-            if (authorExists) return Promise.reject("This Author already exists")
+            if (authorExists) return Promise.reject({errors:{name:{message:"This Author already exists"}}})
             return Author.create(req.body)
         })
         .then(newAuthor => res.json(newAuthor))
