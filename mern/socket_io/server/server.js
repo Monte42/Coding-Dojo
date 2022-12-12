@@ -22,16 +22,44 @@ const io = socket(server, {
 });
 
 io.on("connection", socket => {
-    console.log(`Nice to meet you ${socket.id}. (shake hand)`);
-
-    socket.emit("hello","world")
-
-    socket.on("event_from_client", data => {
+    console.log('socket id: ' + socket.id);
+    
+    socket.on("in", data => {
         // send a message with "data" to ALL clients EXCEPT for the one that emitted the
     	//     "event_from_client" event
-        socket.broadcast.emit("event_to_all_other_clients", data);
+        socket.broadcast.emit("out", data);
     });
 });
+
+
+
+
+// const express = require('express');
+// const app = express();
+// const http = require('http')
+// const {Server} = require('socket.io')
+// const cors = require('cors')
+
+// app.use(cors())
+
+// const server = http.createServer(app)
+
+// const io = new Server(server, {
+//     cors: {
+//         origin: 'http://localhost:3000',
+//         methods: ['GET', 'POST'],
+//     }
+// })
+
+// io.on("connection", (socket) => {
+//     console.log(`user on ${socket.id}`);
+
+//     socket.on("send_msg", (data) => {
+//         socket.broadcast.emit('receive_msg', data)
+//     })
+// })
+
+// server.listen(8000, () => console.log('server up..'))
 
 // socket.broadcast.emit will emit the event to all users except the sending th data
 // io.emit will emit the event to all connected users

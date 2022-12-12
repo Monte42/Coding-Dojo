@@ -2,6 +2,7 @@ import './App.css';
 import {BrowserRouter,Route,Routes} from "react-router-dom"
 import React, {useState,useEffect} from 'react';
 import axios from "axios"
+import io from "socket.io-client"
 import Home from './views/Home';
 import Details from './views/Details';
 import NewResolution from './views/NewResolution';
@@ -10,6 +11,7 @@ import EditResolution from './views/EditResolution';
 export const AppContext = React.createContext()
 
 function App() {
+  const [socket] = useState(() => io(':8000'))
   const [resolutions,setResolutions] = useState([])
 
   useEffect(() =>{
@@ -18,10 +20,17 @@ function App() {
       .catch(e => console.log(e))
   },[resolutions])
 
+  useEffect(() => {
+    socket.on("new_resolution_list", data =>{
+      setResolutions(data)
+    })
+    return () => socket.disconnect(true)
+  },[])
+
   return (
     <div className="App">
       <AppContext.Provider
-      value={[resolutions,setResolutions]}>
+      value={[resolutions,setResolutions,socket]}>
         <BrowserRouter>
           <Routes>
             <Route element={<Home/>} path="/" />

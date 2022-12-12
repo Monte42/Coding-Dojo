@@ -4,15 +4,16 @@ import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../App'
 
 const DeleteButton = ({id}) => {
-    const [resolutions,setResolutions] = useContext(AppContext)
+    const [resolutions,setResolutions,socket] = useContext(AppContext)
     const navigate = useNavigate()
 
     const removeFromDom = revId => {
         axios.delete(`http://localhost:8000/api/resolutions/${revId}`)
-            .then(res => {
+            .then(() => {
                 setResolutions(resolutions.filter(rev => rev._id !== revId))
-                navigate('/')
             })
+            .then(()=>socket.emit("change_in_resolutions", resolutions))
+            .then(()=>navigate('/'))
             .catch(e => console.log(e))
     }
 
