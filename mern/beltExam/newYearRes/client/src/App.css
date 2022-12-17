@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+}
+
+table, th, td{
+  border: 1px solid black;
+  padding: 15px;
+}
+
+.error{
+  color: red;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 5px;
+  background-color: rgba(111, 111, 111 ,.2);
+  border-radius: 5px;
+}
