@@ -5,37 +5,32 @@ const userKey = process.env.USERS_KEY
 
 module.exports = {
     register: async (req,res) => {
-        const newUser = await User.create(req.body)
-        try {
-            const userToken = jwt.sign({_id:newUser._id,email:newUser.email}, userKey)
-            res.status(201).cookie("userToken",userToken,{httpOnly:true,expires:new Date(Date.now() + 90000)}).json({msg:"success", user:newUser})
-        } catch(error){
-            res.status(400).json(error)
-        }
+        // const newUser = await User.create(req.body)
+        // try {
+        //     const userToken = jwt.sign({_id:newUser._id,email:newUser.email}, userKey)
+        //     res.status(201).cookie("userToken",userToken,{httpOnly:true,expires:new Date(Date.now() + 900000)}).json({msg:"success", user:newUser})
+        // } catch(error){
+        //     console.log(error)
+        // }
 
-        // User.create(req.body)
-        //     .then(user => {
-        //         const userToken = jwt.sign({id:user._id,email:user.email}, userKey)
-        //         res.status(201).cookie("userToken",userToken,{httpOnly:true,expires:new Date(Date.now() + 90000)}).json({msg:"success", user:user})
-        //     })
-        //     .catch(err => res.json(err))
+        User.create(req.body)
+            .then(user => {
+                const userToken = jwt.sign({id:user._id,email:user.email}, userKey)
+                res.status(201).cookie("userToken",userToken,{httpOnly:true,expires:new Date(Date.now() + 9000000)}).json({msg:"success", user:user})
+            })
+            .catch(err => res.status(400).json(err))
             
     },
     login: async (req,res) => {
         const user = await User.findOne({email:req.body.email})
-        const payload = {
-            id:user._id,
-            email:user.email,
-            // Socket.Id???
-        }
         if (!user) return res.status(400).json({error:"Invalid password/email!!!"})// if user null
         try {
-            const isValid = bcrypt.compare(user.password, req.body.password)
-            if(!isValid) return res.status(400).json({error:"Invalid password/email!!!"})
-            const userToken = jwt.sign(payload, userKey)
-            res.status(201).cookie("userToken",userToken,{httpOnly:true,expires:new Date(Date.now() + 90000)}).json({msg:"success", user:user})
+            const isValid = await bcrypt.compare(req.body.password, user.password)
+            if(!isValid) return res.status(400).json({error:"Invalid password/email"})
+            const userToken = jwt.sign({id:user._id,email:user.email}, userKey)
+            res.status(201).cookie("userToken",userToken,{httpOnly:true,expires:new Date(Date.now() + 9000000)}).json({msg:"success", user:user})
         } catch (error) {
-            res.status(400).json({error:"Invalid password/email!!!"})
+            res.status(400).json({error:"Invalid password/email..."})
         }
 
             // .then(user => {
@@ -70,9 +65,9 @@ module.exports = {
             .catch(err => res.json(err))
     },
     updateUser: (req,res) => {
-        User.findByIdAndUpdate({_id:req.params.id})
+        User.updateOne({_id:req.params.id}, req.body, {runValidators:true})
             .then(results => res.json(results))
-            .catch(err => res.json(err))
+            .catch(err => res.status(400).json(err))
     },
     deleteUser: (req,res) => {
         User.findByIdAndDelete({_id:req.params.id})
