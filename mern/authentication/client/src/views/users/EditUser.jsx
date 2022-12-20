@@ -1,5 +1,5 @@
 import { useEffect,useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate,useParams,Link } from "react-router-dom"
 import axios from "axios"
 
 
@@ -59,6 +59,8 @@ const EditUser = () => {
                 {errors.email && <p>{errors.email.message}</p>}
                 <input type="submit" value="Update" />
             </form>
+            
+            <Link to={"/"}>Cancel Changes</Link>
         </div>
     )
 }

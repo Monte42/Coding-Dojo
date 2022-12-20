@@ -1,9 +1,12 @@
 import axios from 'axios'
-import { useEffect,useState } from 'react'
+import { useState,useContext,useEffect } from 'react'
+import { UserContext } from '../../App'
 import { Link,useNavigate } from 'react-router-dom'
+import PageHeader from '../../components/general/PageHeader'
 
 const Home = () => {
     const [users,setUsers] = useState([])
+    const [user] = useContext(UserContext)
     const navigate = useNavigate()
 
     const logOut = () => {
@@ -19,15 +22,20 @@ const Home = () => {
     },[])
     return (
         <div>
+            <PageHeader />
             <h1>All Users</h1>
             {
                 users.map((u,i) => {
-                    return (
-                        <p key={i}>
-                            {u.firstName} {u.lastName} |
-                            <Link to={`/users/${u._id}/edit`}>Edit</Link>
-                        </p>
-                    )
+                    const a = [u._id, user._id].sort()
+                    if (user._id !== u._id) {
+                        return (
+                            <p key={i}>
+                                {u.firstName} {u.lastName} |
+                                <Link to={`/users/${u._id}/edit`}>Edit</Link> |
+                                <Link to={`/chat/${a[0]}_${a[1]}`}>Chat</Link> 
+                            </p>
+                        )
+                    }
                 })
             }
             <button onClick={e =>logOut()}>Logout</button>

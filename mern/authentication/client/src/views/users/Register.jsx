@@ -1,9 +1,11 @@
-import {useState} from 'react'
+import {useState,useContext} from 'react'
+import { UserContext } from '../../App'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,Link } from 'react-router-dom'
 
 
 const Register = () => {
+    const [user,setUser] = useContext(UserContext)
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
@@ -21,7 +23,10 @@ const Register = () => {
             password,
             confirmPassword
         },{withCredentials:true, credentials:"include"})
-            .then(() => navigate('/'))
+            .then(res => {
+                setUser(res.data.user)
+                navigate('/users')
+            })
             .catch(err => {
                 setErrors(err.response.data.errors)
             })
@@ -63,6 +68,8 @@ const Register = () => {
                 {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
                 <input type="submit" value="Sign Up" />
             </form>
+            
+            <Link to={"/login"}>Already a member?</Link>
         </div>
     )
 }
