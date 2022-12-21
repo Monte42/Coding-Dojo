@@ -2,12 +2,10 @@ import { useContext } from 'react'
 import { UserContext } from '../../App'
 import { useNavigate,Link } from 'react-router-dom'
 import PageHeader from '../../components/general/PageHeader'
-import axios from 'axios'
 import DeleteButton from '../../components/general/DeleteButton'
 
 const Profile = () => {
     const [user] = useContext(UserContext)
-    const navigate = useNavigate()
 
     return (
         <div>

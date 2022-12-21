@@ -6,7 +6,7 @@ const DeleteButton = ({id}) => {
     const navigate = useNavigate()
 
     const removeFromDom = userID => {
-        axios.delete(`http://localhost:8000/api/pets/${userID}`)
+        axios.delete(`http://localhost:8000/api/pets/${userID}`, {withCredentials:true})
             .then(() => navigate('/register'))
             .catch(err => console.log(err))
     }

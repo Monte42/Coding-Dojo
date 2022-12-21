@@ -22,7 +22,7 @@ const Register = () => {
             email,
             password,
             confirmPassword
-        },{withCredentials:true, credentials:"include"})
+        },{withCredentials:true})
             .then(res => {
                 setUser(res.data.user)
                 navigate('/users')
