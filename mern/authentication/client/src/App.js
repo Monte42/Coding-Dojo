@@ -8,6 +8,7 @@ import ChatLobby from './views/chat/ChatLobby';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import ChatRoom from './views/chat/ChatRoom';
+import Profile from './views/users/Profile';
 
 export const UserContext = React.createContext()
 
@@ -29,6 +30,7 @@ function App() {
             <Route element={<Register/>} path="/register"/>
             <Route element={<Login/>} path="/login"/>
             <Route element={<UserList/>} path="/users"/>
+            <Route element={<Profile/>} path="/users/:id"/>
             <Route element={<EditUser/>} path="/users/:id/edit"/>
             <Route element={<ChatLobby/>} path="/chat_lobby"/>
             <Route element={<ChatRoom/>} path="/chat/:room" />

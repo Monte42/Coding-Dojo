@@ -19,8 +19,10 @@ const PrivateChat = () => {
     return (
         <div>
             <PageHeader />
-            <h1>Private chat</h1>
-            <MessageBoard msgs={msgs} setMsgs={setMsgs} room={room} />
+            <div className="container pt-3">
+                <h2>Chat Room</h2>
+                <MessageBoard msgs={msgs} setMsgs={setMsgs} room={room} />
+            </div>
         </div>
     )
 }

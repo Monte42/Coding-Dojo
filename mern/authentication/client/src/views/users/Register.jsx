@@ -33,43 +33,46 @@ const Register = () => {
     }
 
     return (
-        <div>
-            <h1>Register</h1>
-            <form onSubmit={e => submitHandler(e)}>
-                <p>
-                    <label> First Name:
-                        <input type="text" onChange={e => setFirstName(e.target.value)}/>
-                    </label>
-                </p>
-                {errors.firstName && <p>{errors.firstName.message}</p>}
-                <p>
-                    <label> Last Name:
-                        <input type="text" onChange={e => setLastName(e.target.value)}/>
-                    </label>
-                </p>
-                {errors.lastName && <p>{errors.lastName.message}</p>}
-                <p>
-                    <label> Email:
-                        <input type="text" onChange={e => setEmail(e.target.value)}/>
-                    </label>
-                </p>
-                {errors.email && <p>{errors.email.message}</p>}
-                <p>
-                    <label> Password:
-                        <input type="password" onChange={e => setPassword(e.target.value)}/>
-                    </label>
-                </p>
-                {errors.password && <p>{errors.password.message}</p>}
-                <p>
-                    <label> Confirm Password:
-                        <input type="password" onChange={e => setConfirmPassword(e.target.value)}/>
-                    </label>
-                </p>
-                {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
-                <input type="submit" value="Sign Up" />
-            </form>
+        <div className='auth-pages'>
+            <h1>This Chat App</h1>
+            <div>
+                <h3>Register</h3>
+                <form onSubmit={e => submitHandler(e)} className="mb-3">
+                    <p>
+                        <label className="form-lable"> First Name:
+                            <input className="form-control" type="text" onChange={e => setFirstName(e.target.value)}/>
+                        </label>
+                    </p>
+                    {errors.firstName && <p className='error'>{errors.firstName.message}</p>}
+                    <p>
+                        <label className="form-lable"> Last Name:
+                            <input className="form-control" type="text" onChange={e => setLastName(e.target.value)}/>
+                        </label>
+                    </p>
+                    {errors.lastName && <p className='error'>{errors.lastName.message}</p>}
+                    <p>
+                        <label className="form-lable"> Email:
+                            <input className="form-control" type="text" onChange={e => setEmail(e.target.value)}/>
+                        </label>
+                    </p>
+                    {errors.email && <p className='error'>{errors.email.message}</p>}
+                    <p>
+                        <label className="form-lable"> Password:
+                            <input className="form-control" type="password" onChange={e => setPassword(e.target.value)}/>
+                        </label>
+                    </p>
+                    {errors.password && <p className='error'>{errors.password.message}</p>}
+                    <p>
+                        <label className="form-lable"> Confirm Password:
+                            <input className="form-control" type="password" onChange={e => setConfirmPassword(e.target.value)}/>
+                        </label>
+                    </p>
+                    {errors.confirmPassword && <p className='error'>{errors.confirmPassword.message}</p>}
+                    <input type="submit" value="Sign Up" />
+                </form>
             
-            <Link to={"/login"}>Already a member?</Link>
+                <Link to={"/login"}>Already a member?</Link>
+            </div>
         </div>
     )
 }

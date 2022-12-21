@@ -28,23 +28,26 @@ const Login = () => {
 }
 
     return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={e => submitHandler(e)}>
-                {errors && <p>{errors.error}</p>}
-                <p>
-                    <label> Email:
-                        <input type="text" onChange={e => setEmail(e.target.value)}/>
-                    </label>
-                </p>
-                <p>
-                    <label> Password:
-                        <input type="text" onChange={e => setPassword(e.target.value)}/>
-                    </label>
-                </p>
-                <input type="submit" value="Login" />
-            </form>
-            <Link to={"/register"}>Not a member?</Link>
+        <div className='auth-pages'>
+            <h1>This Chat App</h1>
+            <div>
+                <h3>Log In</h3>
+                <form onSubmit={e => submitHandler(e)}>
+                    {errors && <p className='error'>{errors.error}</p>}
+                    <p>
+                        <label className="form-lable"> Email:
+                            <input className="form-control" type="text" onChange={e => setEmail(e.target.value)}/>
+                        </label>
+                    </p>
+                    <p>
+                        <label className="form-lable"> Password:
+                            <input className="form-control" type="password" onChange={e => setPassword(e.target.value)}/>
+                        </label>
+                    </p>
+                    <input type="submit" value="Login" />
+                </form>
+                <Link to={"/register"}>Not a member?</Link>
+            </div>
         </div>
     )
 }

@@ -6,7 +6,7 @@ module.exports = app => {
     app.delete("/api/users/:id", UserController.deleteUser)
     app.get("/api/users/:id", UserController.fecthUserById)
     app.get("/api/logout", UserController.logout)
-    app.get("/api/users", authenticate, UserController.fecthAllUsers)
+    app.get("/api/users", UserController.fecthAllUsers)
     app.post("/api/register", UserController.register)
     app.post("/api/login", UserController.login)
 }

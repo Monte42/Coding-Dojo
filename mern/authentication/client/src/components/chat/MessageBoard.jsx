@@ -31,16 +31,16 @@ const MessageBoard = ({msgs,setMsgs,room}) => {
             room
         }
         axios.post("http://localhost:8000/api/chat/newMessage", newMsg, {withCredentials:true})
-            .then(res=> setMsgs([...msgs, res.data]))
-            .catch(err => setErrors(err.response.data.errors))
+        .then(res=> setMsgs([...msgs, res.data]))
+        .catch(err => setErrors(err.response.data.errors))
         socket.emit("msg_from_client", newMsg)
+        setMsg("")
     }
 
     return (
-        <div>
+        <div className='text-center'>
             <h3>Messages</h3>
-            <p>{user.firstName}</p>
-            <div id='message-box'>
+            <div id='message-box' className='bg-light rounded'>
                 {msgs &&
                     msgs.map((message,index) => {
                         return(
@@ -53,9 +53,15 @@ const MessageBoard = ({msgs,setMsgs,room}) => {
                 <p id="msg-btm"></p>
             </div>
             <form onSubmit={submitHandler}>
-                <input type="text" value={msg} onChange={e=>setMsg(e.target.value)}/>
-                {errors.message && <p>{errors.message.message}</p>}
-                <input type="submit" value="Send" />
+                <div className="input-group input-group-lg msg-form">
+                    <span onClick={submitHandler} className="input-group-text" id="inputGroup-sizing-lg">Send</span>
+                    <input type="text" className="form-control" aria-label="Sizing example input" 
+                    aria-describedby="inputGroup-sizing-lg" value={msg} 
+                    onChange={e => setMsg(e.target.value)}
+                    />
+                    <br />
+                </div>
+                {errors.message && <p className='error msg-form'>{errors.message.message}</p>}
             </form>
         </div>
     )
