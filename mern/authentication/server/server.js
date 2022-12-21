@@ -31,7 +31,6 @@ const io = socket(server, {
 })
 
 io.on("connection", socket => {
-    console.log();
     socket.on("msg_from_client", data => {
         socket.broadcast.emit("msg_from_server", data);
     });
