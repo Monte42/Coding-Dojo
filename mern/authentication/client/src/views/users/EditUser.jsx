@@ -12,7 +12,6 @@ const EditUser = () => {
     const [firstName,setFirstName] = useState("")
     const [lastName,setLastName] = useState("")
     const [email,setEmail] = useState("")
-    const [password,setPassword] = useState("")
     const [errors,setErrors] = useState({})
 
     useEffect(() => {
@@ -21,17 +20,18 @@ const EditUser = () => {
                 setFirstName(res.data.firstName)
                 setLastName(res.data.lastName)
                 setEmail(res.data.email)
-                setPassword(res.data.password)
             })
     },[])
 
     const submitHandler = (e) => {
         e.preventDefault()
         const updatedUser = {
+            _id: id,
             firstName,
             lastName,
             email,
-            password: password
+            password: user.password,
+            createdAt: user.createdAt
         }
         axios.put(`http://localhost:8000/api/users/${id}`, updatedUser, {withCredentials: true})
             .then(()=>{
