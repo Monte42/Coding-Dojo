@@ -31,11 +31,8 @@ const io = socket(server, {
 })
 
 io.on("connection", socket => {
-    console.log("New User: "+socket.id);
-    socket.on("send_new_message", (data,room, cb) => {
-        socket.to(room).emit("receive_new_message",data, cb)
-    })
-    socket.on("join_room", (room) => {
-        socket.join(room)
-    })
-})
+    console.log(socket.id);
+    socket.on("msg_from_client", data => {
+        socket.broadcast.emit("msg_from_server", data);
+    });
+});

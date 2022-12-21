@@ -7,7 +7,7 @@ import EditUser from './views/users/EditUser';
 import ChatLobby from './views/chat/ChatLobby';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import PrivateChat from './views/chat/PrivateChat';
+import ChatRoom from './views/chat/ChatRoom';
 
 export const UserContext = React.createContext()
 
@@ -31,7 +31,7 @@ function App() {
             <Route element={<UserList/>} path="/users"/>
             <Route element={<EditUser/>} path="/users/:id/edit"/>
             <Route element={<ChatLobby/>} path="/chat_lobby"/>
-            <Route element={<PrivateChat/>} path="/chat/:room" />
+            <Route element={<ChatRoom/>} path="/chat/:room" />
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>

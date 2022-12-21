@@ -3,6 +3,7 @@ import { UserContext } from "../../App"
 import axios from "axios"
 import Message from './Message'
 import { io } from 'socket.io-client'
+import { useEffect } from 'react'
 
 const MessageBoard = ({msgs,setMsgs,room}) => {
     const [socket] = useState(() => io(":8000"))
@@ -10,16 +11,29 @@ const MessageBoard = ({msgs,setMsgs,room}) => {
     const [msg,setMsg] = useState("")
     const [errors,setErrors] = useState({})
 
+    useEffect(() => {
+        const el = document.getElementById("msg-btm")
+        el.scrollIntoView()
+    },[msgs])
+
+    useEffect(() => {
+        socket.on("msg_from_server", data => {
+            setMsgs(prevMsgs => [...prevMsgs, data])
+        })
+        return () => socket.disconnect(true)
+    },[])
+
     const submitHandler = (e) => {
         e.preventDefault()
-        axios.post(`http://localhost:8000/api/chat/newMessage`, {
-            message: msg,
+        const newMsg = {
             from: `${user.firstName} ${user.lastName}`,
+            message: msg,
             room
-        })
-            .then(res => setMsgs([...msgs,res.data]))
+        }
+        axios.post("http://localhost:8000/api/chat/newMessage", newMsg, {withCredentials:true})
+            .then(res=> setMsgs([...msgs, res.data]))
             .catch(err => setErrors(err.response.data.errors))
-        setMsg("")
+        socket.emit("msg_from_client", newMsg)
     }
 
     return (
