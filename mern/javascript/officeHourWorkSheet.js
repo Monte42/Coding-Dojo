@@ -158,26 +158,65 @@
 
 // console.log(maxProfit(prices));
 
-const arr1 = [-4,3,2,1]
-const arr2 = [5]
-const arr3 = [3,-6,5,-2,1]
-const arr4 = [-5,4,-2,3,1]
-const arr5 = [0]
-const arr6 = [-2,-3,3,-1,6,7,-3]
+// const arr1 = [-4,3,2,1]
+// const arr2 = [5]
+// const arr3 = [3,-6,5,-2,1]
+// const arr4 = [-5,4,-2,3,1]
+// const arr5 = [0]
+// const arr6 = [-2,-3,3,-1,6,7,-3]
 
-const findMinVal = arr => {
-    let min = 1
-    let sum = 1
-    for(let i=0;i<arr.length;i++){
-        sum += arr[i]
-        if (min+sum<0) min += (sum*-1)+1
+// const findMinVal = arr => {
+//     let min = 1
+//     let sum = 1
+//     for(let i=0;i<arr.length;i++){
+//         sum += arr[i]
+//         if (min+sum<0) min += (sum*-1)+1
+//     }
+//     console.log("min: ", min);
+// }
+
+// findMinVal(arr1)
+// findMinVal(arr2)
+// findMinVal(arr3)
+// findMinVal(arr4)
+// findMinVal(arr5)
+// findMinVal(arr6)
+
+
+var str1 = [
+    "(){}[]", //t
+    "({[{}]}){[{[()]}]}[{({[]})}]", //t
+    "(){}[}]",//f
+    "(){}[{}{({}})}]",
+    "({}}{)}){}[{{()({})}}]",//f
+    "(){}[]{}()[]",//t
+]
+
+var isValid = function(s) {
+    let map = new Map()
+    map.set("(", 0)
+    map.set("{", 0)
+    map.set("[", 0)
+
+
+    for (let i=0;i<s.length;i++){
+        if(map.has(s[i])) {
+            map.set(s[i], map.get(s[i])+1)
+        }
+        else{
+            map.set(s[i], map.get(s[i])-1)
+            console.log(map.get(s[i]));
+            if (map.get(s[i])>0) return false
+        }
     }
-    console.log("min: ", min);
-}
 
-findMinVal(arr1)
-findMinVal(arr2)
-findMinVal(arr3)
-findMinVal(arr4)
-findMinVal(arr5)
-findMinVal(arr6)
+    console.log(map);
+
+    return map
+};
+
+console.log(isValid(str1[2]));
+
+// for (i in str1) {
+//     console.log(isValid(i));
+// }
