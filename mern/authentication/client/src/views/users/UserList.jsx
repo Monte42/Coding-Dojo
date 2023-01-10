@@ -11,8 +11,8 @@ const Home = () => {
 
     const logOut = () => {
         axios.get("http://localhost:8000/api/logout", {withCredentials:true})
-        .then(() => localStorage.removeItem("user"))
-        .then(() => navigate("/login"))
+        .then(() => localStorage.setItem("user", null))
+        .then(() => navigate("/"))
         .catch(e=> console.log(e))
     }
 

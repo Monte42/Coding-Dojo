@@ -5,7 +5,7 @@ import PageHeader from '../../components/general/PageHeader'
 import DeleteButton from '../../components/general/DeleteButton'
 
 const Profile = () => {
-    const [user] = useContext(UserContext)
+    const [user,setUser] = useContext(UserContext)
 
     return (
         <div>
@@ -22,7 +22,7 @@ const Profile = () => {
                     <Link to={`/users/${user._id}/edit`}>Edit</Link>
                 </button>
                 &nbsp;&nbsp; | &nbsp;&nbsp;
-                <DeleteButton id={user._id}/>
+                <DeleteButton user={user} setUser={setUser}/>
             </div>
         </div>
     )

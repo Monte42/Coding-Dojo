@@ -9,10 +9,11 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import ChatRoom from './views/chat/ChatRoom';
 import Profile from './views/users/Profile';
+import PrivateRoutes from './utils/PrivateRoutes';
 
 export const UserContext = React.createContext()
 
-const persistData = JSON.parse(localStorage.getItem("user") || '{}')
+const persistData = JSON.parse(localStorage.getItem("user") || null)
 
 function App() {
   const [user,setUser] = useState(persistData)
@@ -28,12 +29,14 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route element={<Register/>} path="/register"/>
-            <Route element={<Login/>} path="/login"/>
-            <Route element={<UserList/>} path="/users"/>
-            <Route element={<Profile/>} path="/users/:id"/>
-            <Route element={<EditUser/>} path="/users/:id/edit"/>
-            <Route element={<ChatLobby/>} path="/chat_lobby"/>
-            <Route element={<ChatRoom/>} path="/chat/:room" />
+            <Route element={<Login/>} path="/"/>
+            <Route element={<PrivateRoutes/>}>
+              <Route element={<UserList/>} path="/users"/>
+              <Route element={<Profile/>} path="/users/:id"/>
+              <Route element={<EditUser/>} path="/users/:id/edit"/>
+              <Route element={<ChatLobby/>} path="/chat_lobby"/>
+              <Route element={<ChatRoom/>} path="/chat/:room" />
+            </Route>
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>
