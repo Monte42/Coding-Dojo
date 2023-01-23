@@ -71,7 +71,7 @@ const Register = () => {
                     <input type="submit" value="Sign Up" />
                 </form>
             
-                <Link to={"/login"}>Already a member?</Link>
+                <Link to={"/"}>Already a member?</Link>
             </div>
         </div>
     )
