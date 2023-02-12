@@ -12,9 +12,9 @@ function rSigma(endPoint, index=1, sum=0){
     rSigma(endPoint,index,sum)
 }
 
-rSigma(5)
-rSigma(2.5)
-rSigma(-1)
+// rSigma(5)
+// rSigma(2.5)
+// rSigma(-1)
 
 
 function rFact(endPoint, index=1, factorial=1){
@@ -32,6 +32,31 @@ function rFact(endPoint, index=1, factorial=1){
     rFact(endPoint,index,factorial)
 }
 
-rFact(3)
-rFact(6.5)
-rFact(-1)
+// rFact(3)
+// rFact(6.5)
+// rFact(-1)
+
+
+const rBinarySearch = (arr,val) => {
+    while(arr.length > 0){
+        if (arr[0] === val) return true
+        arr.shift()
+        rBinarySearch(arr,val)
+    }
+    return false
+}
+// console.log(rBinarySearch([1,3,5,6],4)) 
+// console.log(rBinarySearch([4,5,6,8,12],5))
+
+const rgcf = (a,b) => {
+    if (b===a) return a
+    if (a>b){
+        if (a%b===0) return `${b}`
+        rgcf(a,b-1)
+    } else {
+        if (b%a===0) return `${a}`
+        rgcf(a-1,b)
+    }
+}
+
+console.log(rgcf(100,35));
